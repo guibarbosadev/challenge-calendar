@@ -1,0 +1,36 @@
+.wrapper {
+  label {
+    display: block;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  .field {
+    margin-top: 20px;
+  }
+
+  button[type="submit"] {
+    display: block;
+    padding: 5px 20px;
+    margin-top: 20px;
+    margin-left: auto;
+    background-color: var(--color-primary);
+    border: none;
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+    transition-property: opacity;
+    transition-duration: 0.4s;
+    transition-timing-function: ease-in-out;
+
+    &:focus,
+    &:active,
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
