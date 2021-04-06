@@ -1,9 +1,9 @@
 import React from "react";
-import SignUp from "./SignUp";
+import ChallengeCreation from "./challenge-creation";
 import "./App.scss";
 
 function App() {
-  return <SignUp handleSubmit={() => {}} />;
+  return <ChallengeCreation handleSubmit={() => {}} />;
 }
 
 export default App;

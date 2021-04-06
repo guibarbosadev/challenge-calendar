@@ -10,7 +10,7 @@ export interface IProps {
   handleSubmit: (values: IValues) => void;
 }
 
-export default function SignUp({ handleSubmit }: IProps) {
+export default function ChallengeCreation({ handleSubmit }: IProps) {
   const [name, setName] = React.useState("");
   const [duration, setDuration] = React.useState("");
 
