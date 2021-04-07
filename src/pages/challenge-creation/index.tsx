@@ -1,6 +1,7 @@
 import React from "react";
-import ChallengeCreationForm from "./components/challenge-creation-form";
-import { IValues } from "./components/challenge-creation-form/index";
+import ChallengeCreationForm, {
+  IValues,
+} from "./components/challenge-creation-form";
 
 export default function ChallengeCreationPage() {
   function handleSubmit(values: IValues) {
