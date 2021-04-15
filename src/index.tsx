@@ -7,18 +7,16 @@ import {
 } from "react-router-dom";
 import ChallengeCreationPage from "./pages/challenge-creation";
 import ChallengeCalendarPage from "./pages/challenge-calendar/index";
+import Routes from "./routes";
+import { Provider } from "mobx-react";
+import { useChallengeStore } from "./stores/challenge";
 
 export default function App() {
+  const challengeStore = useChallengeStore();
+
   return (
-    <Router>
-      <Switch>
-        {/* TODO: fetch challenges and dynamic redirect */}
-        <Route path="/calendar" component={ChallengeCalendarPage} />
-        <Route path="/create-challenge" component={ChallengeCreationPage} />
-        <Route path="*">
-          <Redirect to="/create-challenge" />
-        </Route>
-      </Switch>
-    </Router>
+    <Provider challengeStore={challengeStore}>
+      <Routes></Routes>
+    </Provider>
   );
 }
