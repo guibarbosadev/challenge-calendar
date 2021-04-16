@@ -12,7 +12,6 @@ export const HomePage = observer(() => {
     const shouldLoadChallenges = !challengeStore.didLoadChallenges;
     const getChallenges = async () => {
       setIsLoading(true);
-      console.log("dsakodsko");
       await challengeStore.getChallenges();
       setIsLoading(false);
     };
@@ -27,8 +26,14 @@ export const HomePage = observer(() => {
   return !challengeStore.didLoadChallenges && isLoading ? (
     <div>Loading...</div>
   ) : challengeStore.challenges.length > 0 ? (
-    <Redirect to={ERoutes.Calendar} />
+    <div>
+      {console.log("one, ", challengeStore.challenges.length)}
+      <Redirect to={ERoutes.Calendar} />
+    </div>
   ) : (
-    <Redirect to={ERoutes.CreateChallenge} />
+    <div>
+      {console.log("two", challengeStore.challenges.length)}
+      <Redirect to={ERoutes.CreateChallenge} />
+    </div>
   );
 });

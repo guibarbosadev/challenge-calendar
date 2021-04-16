@@ -1,5 +1,5 @@
 import React from "react";
-import { action, observable } from "mobx";
+import { action, makeObservable, observable } from "mobx";
 import { Challenge } from "../models/challenge";
 import { ChallengeService } from "../services/challenge";
 
@@ -16,6 +16,19 @@ export class ChallengeStore {
   async getChallenges() {
     this.challenges = await this.service.fetchChallenges();
     this.didLoadChallenges = true;
+  }
+
+  async createChallenge(challenge: Challenge) {
+    await this.service.saveChallenge(challenge);
+  }
+
+  constructor() {
+    makeObservable(this, {
+      didLoadChallenges: observable,
+      challenges: observable,
+      getChallenges: action,
+      createChallenge: action,
+    });
   }
 }
 

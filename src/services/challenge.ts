@@ -7,9 +7,18 @@ export class ChallengeService {
       const parsedChallenges: Challenge[] = challenges
         ? JSON.parse(challenges)
         : [];
+
       return parsedChallenges;
     } catch {
       return [];
     }
+  }
+
+  async saveChallenge(challenge: Challenge) {
+    try {
+      const fetchedChallenges = await this.fetchChallenges();
+      const challenges = fetchedChallenges.concat([challenge]);
+      await localStorage.setItem("challenges", JSON.stringify(challenges));
+    } catch {}
   }
 }
