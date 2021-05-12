@@ -8,7 +8,7 @@ import { useChallengeStore } from "./stores/challenge";
 
 export enum ERoutes {
   CreateChallenge = "/create-challenge",
-  Calendar = "/Calendar",
+  Calendar = "/calendar",
 }
 
 const Routes = observer(() => {
@@ -16,12 +16,9 @@ const Routes = observer(() => {
   const isCalendarRouteEnabled = didLoadChallenges && challenges.length > 0;
   const isCreateChallengeRouteEnabled = didLoadChallenges;
 
-  console.log("isCalendarRouteEnabled", isCalendarRouteEnabled);
-
   return (
     <Router>
       <Switch>
-        {/* TODO: fetch challenges and dynamic redirect */}
         {isCalendarRouteEnabled && (
           <Route path={ERoutes.Calendar} component={ChallengeCalendarPage} />
         )}

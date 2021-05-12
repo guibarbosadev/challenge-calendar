@@ -3,13 +3,17 @@ import { Redirect } from "react-router";
 import { observer } from "mobx-react";
 import { ERoutes } from "../../routes";
 import { useChallengeStore } from "../../stores/challenge";
+import ChallengeCreationPage from "../challenge-creation";
 
 export const HomePage = observer(() => {
-  const [isLoading, setIsLoading] = React.useState(false);
   const challengeStore = useChallengeStore();
+  const { challenges, didLoadChallenges } = challengeStore;
+  const [isLoading, setIsLoading] = React.useState(
+    !challengeStore.didLoadChallenges
+  );
 
   const getChallenges = () => {
-    const shouldLoadChallenges = !challengeStore.didLoadChallenges;
+    const shouldLoadChallenges = !didLoadChallenges;
     const getChallenges = async () => {
       setIsLoading(true);
       await challengeStore.getChallenges();
@@ -23,17 +27,11 @@ export const HomePage = observer(() => {
 
   React.useEffect(getChallenges, []);
 
-  return !challengeStore.didLoadChallenges && isLoading ? (
+  return isLoading ? (
     <div>Loading...</div>
-  ) : challengeStore.challenges.length > 0 ? (
-    <div>
-      {console.log("one, ", challengeStore.challenges.length)}
+  ) : challenges.length > 0 ? (
       <Redirect to={ERoutes.Calendar} />
-    </div>
   ) : (
-    <div>
-      {console.log("two", challengeStore.challenges.length)}
-      <Redirect to={ERoutes.CreateChallenge} />
-    </div>
+      <ChallengeCreationPage />
   );
 });

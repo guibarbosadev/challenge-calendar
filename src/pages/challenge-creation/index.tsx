@@ -7,23 +7,16 @@ import { add, format } from "date-fns";
 
 export default function ChallengeCreationPage() {
   const challengeStore = useChallengeStore();
-  function handleSubmit(values: IValues) {
+
+  function handleSubmit({ name, duration }: IValues) {
     const date = new Date();
-    const startDate = format(date, "dd-MM-yyyy");
-    const endDate = format(
-      add(date, { days: Math.round(Number(values.duration)) }),
-      "dd-MM-yyyy"
-    );
-    challengeStore.createChallenge({
-      name: values.name,
-      startDate,
-      endDate,
-    });
+    const dateFormat = "dd-MM-yyyy";
+    const startDate = format(date, dateFormat);
+    const days = Math.round(Number(duration));
+    const endDate = format(add(date, { days }), dateFormat);
+
+    challengeStore.createChallenge({ name, startDate, endDate });
   }
 
-  return (
-    <div>
-      <ChallengeCreationForm handleSubmit={handleSubmit} />
-    </div>
-  );
+  return <ChallengeCreationForm handleSubmit={handleSubmit} />;
 }
