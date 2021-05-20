@@ -2,11 +2,11 @@ import React from "react";
 import { Redirect } from "react-router";
 import { observer } from "mobx-react";
 import { ERoutes } from "../../routes";
-import { useChallengeStore } from "../../stores/challenge";
 import ChallengeCreationPage from "../challenge-creation";
+import { useRootStore } from "../../stores";
 
 export const HomePage = observer(() => {
-  const challengeStore = useChallengeStore();
+  const { challengeStore } = useRootStore();
   const { challenges, didLoadChallenges } = challengeStore;
   const [isLoading, setIsLoading] = React.useState(
     !challengeStore.didLoadChallenges
@@ -30,8 +30,8 @@ export const HomePage = observer(() => {
   return isLoading ? (
     <div>Loading...</div>
   ) : challenges.length > 0 ? (
-      <Redirect to={ERoutes.Calendar} />
+    <Redirect to={ERoutes.Calendar} />
   ) : (
-      <ChallengeCreationPage />
+    <ChallengeCreationPage />
   );
 });

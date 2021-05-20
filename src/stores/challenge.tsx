@@ -20,6 +20,7 @@ export class ChallengeStore {
 
   async createChallenge(challenge: Challenge) {
     await this.service.saveChallenge(challenge);
+    await this.getChallenges();
   }
 
   constructor() {
@@ -31,10 +32,3 @@ export class ChallengeStore {
     });
   }
 }
-
-export const challengeStore = new ChallengeStore();
-const challengeStoreContext = React.createContext(challengeStore);
-
-export const useChallengeStore = () => {
-  return React.useContext(challengeStoreContext);
-};

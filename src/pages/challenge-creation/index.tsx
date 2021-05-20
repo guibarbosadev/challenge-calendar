@@ -1,12 +1,12 @@
 import React from "react";
-import { useChallengeStore } from "../../stores/challenge";
 import ChallengeCreationForm, {
   IValues,
 } from "./components/challenge-creation-form";
 import { add, format } from "date-fns";
+import { useRootStore } from "../../stores";
 
 export default function ChallengeCreationPage() {
-  const challengeStore = useChallengeStore();
+  const { challengeStore } = useRootStore();
 
   function handleSubmit({ name, duration }: IValues) {
     const date = new Date();

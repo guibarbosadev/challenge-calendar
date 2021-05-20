@@ -1,23 +1,31 @@
 import { observer } from "mobx-react";
+import { RouterStore, syncHistoryWithStore } from "mobx-react-router";
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
 import ChallengeCalendarPage from "./pages/challenge-calendar";
 import ChallengeCreationPage from "./pages/challenge-creation";
 import { HomePage } from "./pages/home";
-import { useChallengeStore } from "./stores/challenge";
+import { createBrowserHistory, History } from "history";
+import { useRootStore } from "./stores";
 
 export enum ERoutes {
   CreateChallenge = "/create-challenge",
   Calendar = "/calendar",
 }
 
-const Routes = observer(() => {
-  const { challenges, didLoadChallenges } = useChallengeStore();
+export interface IProps {
+  history: History;
+}
+
+const Routes = observer((props: IProps) => {
+  const { challenges, didLoadChallenges } = useRootStore().challengeStore;
   const isCalendarRouteEnabled = didLoadChallenges && challenges.length > 0;
   const isCreateChallengeRouteEnabled = didLoadChallenges;
 
+  console.log("challenges: ", challenges.length);
+
   return (
-    <Router>
+    <Router history={props.history}>
       <Switch>
         {isCalendarRouteEnabled && (
           <Route path={ERoutes.Calendar} component={ChallengeCalendarPage} />
