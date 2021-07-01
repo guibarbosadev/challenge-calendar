@@ -1,39 +1,42 @@
-import { observer } from "mobx-react";
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import ChallengeCalendarPage from "./pages/challenge-calendar";
-import ChallengeCreationPage from "./pages/challenge-creation";
-import { HomePage } from "./pages/home";
-import { useChallengeStore } from "./stores/challenge";
+import { observer } from 'mobx-react';
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import ChallengeCalendarPage from './pages/challenge-calendar';
+import ChallengeCreationPage from './pages/challenge-creation';
+import { HomePage } from './pages/home';
+import { useChallengeStore } from './stores/challenge';
 
 export enum ERoutes {
-  CreateChallenge = "/create-challenge",
-  Calendar = "/calendar",
+    CreateChallenge = '/create-challenge',
+    Calendar = '/calendar'
 }
 
 const Routes = observer(() => {
-  const { challenges, didLoadChallenges } = useChallengeStore();
-  const isCalendarRouteEnabled = didLoadChallenges && challenges.length > 0;
-  const isCreateChallengeRouteEnabled = didLoadChallenges;
+    const { challenges, didLoadChallenges } = useChallengeStore();
+    const isCalendarRouteEnabled = didLoadChallenges && challenges.length > 0;
+    const isCreateChallengeRouteEnabled = didLoadChallenges;
 
-  return (
-    <Router>
-      <Switch>
-        {isCalendarRouteEnabled && (
-          <Route path={ERoutes.Calendar} component={ChallengeCalendarPage} />
-        )}
-        {isCreateChallengeRouteEnabled && (
-          <Route
-            path={ERoutes.CreateChallenge}
-            component={ChallengeCreationPage}
-          />
-        )}
-        <Route path="*">
-          <HomePage />
-        </Route>
-      </Switch>
-    </Router>
-  );
+    return (
+        <Router>
+            <Switch>
+                {isCalendarRouteEnabled && (
+                    <Route
+                        path={ERoutes.Calendar}
+                        component={ChallengeCalendarPage}
+                    />
+                )}
+                {isCreateChallengeRouteEnabled && (
+                    <Route
+                        path={ERoutes.CreateChallenge}
+                        component={ChallengeCreationPage}
+                    />
+                )}
+                <Route path="*">
+                    <HomePage />
+                </Route>
+            </Switch>
+        </Router>
+    );
 });
 
 export default Routes;

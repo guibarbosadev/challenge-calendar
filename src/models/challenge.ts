@@ -1,5 +1,5 @@
 export interface Challenge {
-  name: string;
-  startDate: string;
-  endDate: string;
+    name: string;
+    startDate: string;
+    endDate: string;
 }
