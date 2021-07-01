@@ -1,7 +1,15 @@
 :root {
-  --color-primary: #0284fe;
+    --color-primary: #0284fe;
 }
 
 * {
-  font-family: "Montserrat";
+    font-family: 'Montserrat';
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    margin: 0;
+    height: 100%;
 }
