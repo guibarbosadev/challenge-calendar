@@ -1,8 +1,6 @@
 import React from 'react';
 import { useChallengeStore } from '../../stores/challenge';
-import ChallengeCreationForm, {
-    IValues
-} from './components/challenge-creation-form';
+import ChallengeCreationForm, { IValues } from './challenge-creation-form/ChallengeCreationForm';
 import { add, format } from 'date-fns';
 import styles from './styles.module.scss';
 

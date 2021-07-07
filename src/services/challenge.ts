@@ -4,9 +4,7 @@ export class ChallengeService {
     async fetchChallenges() {
         try {
             const challenges = await localStorage.getItem('challenges');
-            const parsedChallenges: Challenge[] = challenges
-                ? JSON.parse(challenges)
-                : [];
+            const parsedChallenges: Challenge[] = challenges ? JSON.parse(challenges) : [];
 
             return parsedChallenges;
         } catch {
@@ -18,10 +16,7 @@ export class ChallengeService {
         try {
             const fetchedChallenges = await this.fetchChallenges();
             const challenges = fetchedChallenges.concat([challenge]);
-            await localStorage.setItem(
-                'challenges',
-                JSON.stringify(challenges)
-            );
+            await localStorage.setItem('challenges', JSON.stringify(challenges));
         } catch {}
     }
 }

@@ -5,12 +5,12 @@
   * [ ] Fetch challenge data
   * [ ] Mark 'done'|'skipped' days
   * [ ] Allow to edit passed days
-* [x] General
+* [] General
   * [x] Automatically redirect user to calendar|form page
   * [x] Create calendar|form page components
   * [x] Setup prettier
-* [ ] Create challenge form page
   * [ ] Add some 'loading' feedback while checking if has some current challenge
+* [ ] Create challenge form page
   * [ ] Form page layout
   * [ ] Add hard mode option(allow to skip days)
   * [ ] Redirect user to calendar page after creation

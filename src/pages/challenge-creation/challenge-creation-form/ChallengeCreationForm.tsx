@@ -23,19 +23,11 @@ export default function ChallengeCreationForm({ handleSubmit }: IProps) {
         <form onSubmit={onSubmit}>
             <div className={styles.field}>
                 <label htmlFor="name">What will be your daily challenge?</label>
-                <input
-                    name="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
+                <input name="name" value={name} onChange={(e) => setName(e.target.value)} />
             </div>
             <div className={styles.field}>
                 <label htmlFor="duration">For how many days?</label>
-                <input
-                    name="duration"
-                    value={duration}
-                    onChange={(e) => setDuration(e.target.value)}
-                />
+                <input name="duration" value={duration} onChange={(e) => setDuration(e.target.value)} />
             </div>
             <button type="submit">Finish</button>
         </form>
