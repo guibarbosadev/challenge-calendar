@@ -4,6 +4,8 @@ import { observer } from 'mobx-react';
 import { ERoutes } from '../../routes';
 import { useChallengeStore } from '../../stores/challenge';
 import ChallengeCreationPage from '../challenge-creation/ChallengeCreationPage';
+import Loading from '../../components/loading/Loading';
+import styles from './styles.module.scss';
 
 const HomePage = observer(() => {
     const challengeStore = useChallengeStore();
@@ -25,7 +27,15 @@ const HomePage = observer(() => {
 
     React.useEffect(getChallenges, []);
 
-    return isLoading ? <div>Loading...</div> : challenges.length > 0 ? <Redirect to={ERoutes.Calendar} /> : <ChallengeCreationPage />;
+    return isLoading ? (
+        <div className={styles.container}>
+            <Loading />
+        </div>
+    ) : challenges.length > 0 ? (
+        <Redirect to={ERoutes.Calendar} />
+    ) : (
+        <ChallengeCreationPage />
+    );
 });
 
 export default HomePage;

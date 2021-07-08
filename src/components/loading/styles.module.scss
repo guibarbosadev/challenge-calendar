@@ -1,0 +1,17 @@
+.loading {
+    width: 4rem;
+    height: 4rem;
+    border: 0.5rem solid var(--color-primary);
+    border-radius: 50%;
+    border-left-color: transparent;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+    animation-name: spin-animation;
+    animation-iteration-count: infinite;
+}
+
+@keyframes spin-animation {
+    to {
+        transform: rotate(360deg);
+    }
+}
