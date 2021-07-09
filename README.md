@@ -5,7 +5,7 @@
   * [ ] Fetch challenge data
   * [ ] Mark 'done'|'skipped' days
   * [ ] Allow to edit passed days
-* [] General
+* [ ] General
   * [x] Automatically redirect user to calendar|form page
   * [x] Create calendar|form page components
   * [x] Setup prettier
