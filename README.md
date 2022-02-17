@@ -3,8 +3,8 @@
 * [ ] Create calendar page
   * [ ] Calendar page layout
   * [ ] Fetch challenge data
-  * [ ] Mark 'done'|'skipped' days
-  * [ ] Allow to edit passed days
+  * [ ] Mark 'done' days
+  * [ ] Allow to schedule "break" days
 * [x] General
   * [x] Automatically redirect user to calendar|form page
   * [x] Create calendar|form page components
