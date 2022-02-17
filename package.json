@@ -1,5 +1,5 @@
 {
-    "name": "x-days-challenge",
+    "name": "day-streak-calendar",
     "version": "0.0.1",
     "scripts": {
         "dev": "vite",
