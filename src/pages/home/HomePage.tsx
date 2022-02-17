@@ -1,8 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 import { observer } from 'mobx-react';
-import { ERoutes } from '../../routes';
-import { useChallengeStore } from '../../stores/challenge';
+import { ERoutes } from '../../Router';
+import { useChallengeStore } from '../../stores/ChallengeStore';
 import ChallengeCreationPage from '../challenge-creation/ChallengeCreationPage';
 import Loading from '../../components/loading/Loading';
 import styles from './styles.module.scss';
