@@ -1,5 +1,5 @@
 {
-    "name": "day-streak-calendar",
+    "name": "streak-calendar",
     "version": "0.0.1",
     "scripts": {
         "dev": "vite",

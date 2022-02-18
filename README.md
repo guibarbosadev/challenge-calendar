@@ -1,4 +1,4 @@
-# Challenge calendar
+# Streak calendar
 
 * [ ] Create calendar page
   * [ ] Calendar page layout
@@ -11,7 +11,7 @@
   * [x] Setup prettier
   * [x] Add some 'loading' feedback while checking if has some current challenge
 * [ ] Create challenge form page
-  * [ ] Form page [layout](https://www.figma.com/file/hD95VJ1E2uOcWqIz8qIkqX/Day-Streak-Calendar?node-id=1%3A2)
+  * [ ] Form page [layout](https://www.figma.com/file/hD95VJ1E2uOcWqIz8qIkqX/Streak-Calendar?node-id=0%3A1)
   * [ ] Redirect user to calendar page after creation
   * [x] Record challenge locally 
   
