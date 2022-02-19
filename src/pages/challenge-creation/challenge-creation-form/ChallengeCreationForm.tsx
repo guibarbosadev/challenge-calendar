@@ -3,7 +3,6 @@ import styles from './styles.module.scss';
 
 export interface IValues {
     name: string;
-    duration: string;
 }
 
 export interface IProps {
@@ -12,24 +11,19 @@ export interface IProps {
 
 export default function ChallengeCreationForm({ handleSubmit }: IProps) {
     const [name, setName] = React.useState('');
-    const [duration, setDuration] = React.useState('');
 
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        handleSubmit({ name, duration });
+        handleSubmit({ name });
     };
 
     return (
         <form onSubmit={onSubmit}>
             <div className={styles.field}>
-                <label htmlFor="name">What will be your daily challenge?</label>
-                <input name="name" value={name} onChange={(e) => setName(e.target.value)} />
+                <label htmlFor="name">Challenge yourself to do something daily</label>
+                <input name="name" placeholder="E.g: Pratice german for 20 minutes" value={name} onChange={(e) => setName(e.target.value)} />
             </div>
-            <div className={styles.field}>
-                <label htmlFor="duration">For how many days?</label>
-                <input name="duration" value={duration} onChange={(e) => setDuration(e.target.value)} />
-            </div>
-            <button type="submit">Finish</button>
+            <button type="submit">Start!</button>
         </form>
     );
 }
