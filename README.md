@@ -13,6 +13,6 @@
 * [ ] Create challenge form page
   * [x] Update form page [layout](https://www.figma.com/file/hD95VJ1E2uOcWqIz8qIkqX/Streak-Calendar?node-id=0%3A1)
   * [ ] Create Logo
-  * [ ] Redirect user to calendar page after creation
+  * [x] Redirect user to calendar page after creation
   * [x] Record challenge locally 
   

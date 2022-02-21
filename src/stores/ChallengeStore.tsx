@@ -20,6 +20,7 @@ export class ChallengeStore {
 
     async createChallenge(challenge: Challenge) {
         await this.service.saveChallenge(challenge);
+        await this.getChallenges();
     }
 
     constructor() {
