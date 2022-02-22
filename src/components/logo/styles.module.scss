@@ -1,3 +1,44 @@
 .logo {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 1.875rem;
+  align-items: center;
+  
+  &__calendar {
+    font-size: 2rem;
+    width: 4rem;
+    height: 4.5rem;
+    display: flex;
+    flex-direction: column;
+    background-color: purple;
+    border-radius: 50%;
+    box-shadow: inset -4px 2px 2px 0px #000000;
+
+    &__month {
+      background-color: var(--color-primary);
+      color: #fff;
+      font-size: 1.25rem;
+      text-align: center;
+      width: 100%;
+      border-top-left-radius: 0.625rem;
+      border-top-right-radius: 0.625rem;
+      padding: 2px 0;
+    }
+
+    &__day {
+      background-color: #E6E6E6;
+      font-size: 2rem;
+      font-weight: bold;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom-left-radius: 0.625rem;
+      border-bottom-right-radius: 0.625rem;
+    }
+  }
+
+  &__text {
     font-size: 4.5rem;
+  }
 }
