@@ -16,7 +16,7 @@ export default function ChallengeCreationPage() {
             <div className={styles.container}>
                 <Logo />
                 <div className={styles.wrapper}>
-                    <ChallengeCreationForm handleSubmit={handleSubmit} />
+                    <ChallengeCreationForm onSubmit={handleSubmit} />
                     <blockquote className={styles.quote}>
                         <p className={styles.quote__text}>"Some dope quote that actually makes sense"</p>
                         <cite className={styles.quote__author}>-Frederick Gustav</cite>

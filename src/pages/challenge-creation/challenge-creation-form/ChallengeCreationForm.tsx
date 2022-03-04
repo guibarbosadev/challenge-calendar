@@ -1,29 +1,32 @@
 import React from 'react';
 import styles from './styles.module.scss';
+import { useForm } from 'react-hook-form';
+import classNames from './styles.module.scss';
 
 export interface IValues {
     name: string;
 }
 
 export interface IProps {
-    handleSubmit: (values: IValues) => void;
+    onSubmit: (values: IValues) => void;
 }
 
-export default function ChallengeCreationForm({ handleSubmit }: IProps) {
-    const [name, setName] = React.useState('');
+export default function ChallengeCreationForm({ onSubmit }: IProps) {
+    const { register, handleSubmit, formState } = useForm<IValues>({ mode: 'onChange' });
+    const { isValid } = formState;
+    const isInvalid = !isValid;
 
-    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        handleSubmit({ name });
-    };
+    console.log(isValid);
 
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <div className={styles.field}>
                 <label htmlFor="name">Challenge yourself to do something daily</label>
-                <input name="name" placeholder="E.g: Pratice german for 20 minutes" value={name} onChange={(e) => setName(e.target.value)} />
+                <input placeholder="E.g: Pratice german for 20 minutes" {...register('name', { required: true })} />
             </div>
-            <button type="submit">Start!</button>
+            <button type="submit" disabled={isInvalid}>
+                Start!
+            </button>
         </form>
     );
 }
