@@ -1,24 +1,18 @@
 import React from 'react';
 import { Redirect } from 'react-router';
-import { observer } from 'mobx-react';
 import { ERoutes } from '../../Router';
-import { useChallengeStore } from '../../stores/ChallengeStore';
 import ChallengeCreationPage from '../challenge-creation/ChallengeCreationPage';
 import Loading from '../../components/loading/Loading';
 import styles from './styles.module.scss';
+import { useAppDispatch, useAppSelector } from '../../stores/hooks';
+import { getChallenges } from '../../stores/challenge/challengeActions';
 
-const HomePage = observer(() => {
-    const challengeStore = useChallengeStore();
-    const { challenges, didLoadChallenges } = challengeStore;
-    const [isLoading, setIsLoading] = React.useState(!challengeStore.didLoadChallenges);
+const HomePage = () => {
+    const dispatch = useAppDispatch();
+    const { challenges, didLoadChallenges, isLoading } = useAppSelector((state) => state.challenge);
 
     const getChallenges = () => {
         const shouldLoadChallenges = !didLoadChallenges;
-        const getChallenges = async () => {
-            setIsLoading(true);
-            await challengeStore.getChallenges();
-            setIsLoading(false);
-        };
 
         if (shouldLoadChallenges) {
             getChallenges();
@@ -36,6 +30,6 @@ const HomePage = observer(() => {
     ) : (
         <ChallengeCreationPage />
     );
-});
+};
 
 export default HomePage;

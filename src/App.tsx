@@ -1,13 +1,11 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import Router from './Router';
-import { Provider } from 'mobx-react';
-import { useChallengeStore } from './stores/ChallengeStore';
+import { rootStore } from './stores/RootStore';
 
 export default function App() {
-    const challengeStore = useChallengeStore();
-
     return (
-        <Provider challengeStore={challengeStore}>
+        <Provider store={rootStore}>
             <Router />
         </Provider>
     );

@@ -1,22 +1,27 @@
 import { Challenge } from '../models/challenge';
 
-export class ChallengeService {
+class ChallengeService {
     async fetchChallenges() {
-        try {
-            const challenges = await localStorage.getItem('challenges');
-            const parsedChallenges: Challenge[] = challenges ? JSON.parse(challenges) : [];
+        const challenges = await localStorage.getItem('challenges');
+        const parsedChallenges: Challenge[] = challenges ? JSON.parse(challenges) : [];
 
-            return parsedChallenges;
-        } catch {
-            return [];
-        }
+        return parsedChallenges;
     }
 
-    async saveChallenge(challenge: Challenge) {
-        try {
-            const fetchedChallenges = await this.fetchChallenges();
-            const challenges = fetchedChallenges.concat([challenge]);
-            await localStorage.setItem('challenges', JSON.stringify(challenges));
-        } catch {}
+    async saveChallenge(name: string) {
+        const currentDate = new Date();
+        const id = currentDate.toISOString();
+        const challenge: Challenge = { name, id };
+        const fetchedChallenges = await this.fetchChallenges();
+        const challenges = fetchedChallenges.concat(challenge);
+
+        await localStorage.setItem('challenges', JSON.stringify(challenges));
+        const updatedChallenges = await this.fetchChallenges();
+
+        return updatedChallenges;
+
+        return [];
     }
 }
+
+export const challengeService = new ChallengeService();

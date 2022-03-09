@@ -1,14 +1,15 @@
 import React from 'react';
 import Logo from '../../components/logo/Logo';
-import { useChallengeStore } from '../../stores/ChallengeStore';
 import ChallengeCreationForm, { IValues } from './challenge-creation-form/ChallengeCreationForm';
 import styles from './styles.module.scss';
+import { useAppDispatch } from '../../stores/hooks';
+import { createChallenge } from '../../stores/challenge/challengeActions';
 
 export default function ChallengeCreationPage() {
-    const challengeStore = useChallengeStore();
+    const dispatch = useAppDispatch();
 
     function handleSubmit({ name }: IValues) {
-        challengeStore.createChallenge({ name });
+        dispatch(createChallenge(name));
     }
 
     return (
