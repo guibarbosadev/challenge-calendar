@@ -5,7 +5,7 @@ import ChallengeCreationPage from '../challenge-creation/ChallengeCreationPage';
 import Loading from '../../components/loading/Loading';
 import styles from './styles.module.scss';
 import { useAppDispatch, useAppSelector } from '../../stores/hooks';
-import { getChallenges } from '../../stores/challenge/challengeActions';
+import { getChallenges as createGetChallengesAction } from '../../stores/challenge/challengeActions';
 
 const HomePage = () => {
     const dispatch = useAppDispatch();
@@ -15,7 +15,7 @@ const HomePage = () => {
         const shouldLoadChallenges = !didLoadChallenges;
 
         if (shouldLoadChallenges) {
-            getChallenges();
+            dispatch(createGetChallengesAction());
         }
     };
 
