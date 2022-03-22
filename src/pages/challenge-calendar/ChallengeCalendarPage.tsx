@@ -1,17 +1,17 @@
 import React from 'react';
 import Logo from '../../components/logo/Logo';
-import { useAppSelector } from '../../stores/hooks';
+import { useAppSelector, useAppDispatch } from '../../stores/hooks';
 import classNames from './styles.module.scss';
 import Select from 'react-select';
+import { Challenge } from '../../models/challenge';
+import { selectChallenge } from '../../stores/challenge/challengeSlice';
 
 const ChallengeCalendarPage: React.FC = () => {
-    const { challenges } = useAppSelector((state) => state.challenge);
-    const options = challenges.map((challenge) => ({
-        value: challenge.id,
-        label: challenge.name
-    }));
-    const [firstOption] = options;
-    const [selectedOption, setSelectedOption] = React.useState(firstOption);
+    const { challenges, selectedChallenge } = useAppSelector((state) => state.challenge);
+    const dispatch = useAppDispatch();
+    const onSelectChallenge = (option: Challenge) => {
+        dispatch(selectChallenge(option));
+    };
 
     return (
         <>
@@ -22,9 +22,11 @@ const ChallengeCalendarPage: React.FC = () => {
             <main className={classNames.body}>
                 <Select
                     className={classNames.select}
-                    value={selectedOption}
-                    options={options}
-                    onChange={(option) => option && setSelectedOption(option)}
+                    value={selectedChallenge}
+                    options={challenges}
+                    getOptionLabel={(challenge) => challenge.name}
+                    getOptionValue={(challenge) => challenge.id}
+                    onChange={(option) => option && onSelectChallenge(option)}
                     isSearchable={false}
                 />
             </main>
