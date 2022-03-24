@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { ChallengeState } from './challengeType';
 import { createChallenge, getChallenges } from './challengeActions';
 
-const currentDate = new Date();
-const currentYear = currentDate.getFullYear();
-const currentMonth = currentDate.getMonth() + 1;
+export const currentDate = new Date();
+export const currentYear = currentDate.getFullYear();
+export const currentMonth = currentDate.getMonth() + 1;
 
 const initialState: ChallengeState = {
     challenges: [],
