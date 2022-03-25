@@ -26,7 +26,16 @@ const Calendar: React.FC<CalendarProps> = ({ month, year, day }) => {
 
     return (
         <div className={classNames.calendar}>
-            <div className={classNames.calendar__header}>{format(date, 'MMM yyyy')}</div>
+            <div className={classNames.calendar__date}>{format(date, 'MMM yyyy')}</div>
+            <div className={classNames.calendar__week}>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+                <div>Sun</div>
+            </div>
             <div className={classNames.calendar__body}>
                 {cells.map((day, index) => (
                     <div className={classNames.calendar__body__cell}>{day}</div>

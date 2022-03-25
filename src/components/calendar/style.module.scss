@@ -1,8 +1,15 @@
 .calendar {
-    &__header {
+    &__date {
         background-color: var(--color-primary);
         padding: 10px 0;
-        color: #fff;
+        color: #ffffff;
+    }
+
+    &__week {
+        background-color: rgba(0, 0, 0, 0.2);
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        padding: 10px 0;
     }
 
     &__body {
