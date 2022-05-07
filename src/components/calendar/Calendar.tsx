@@ -18,11 +18,9 @@ const Calendar: React.FC<CalendarProps> = ({ month, year, day }) => {
     const daysInTheMonth = Array.from({ length: daysInTheMonthCount }).map((_, index) => index + 1);
     const firstDateOfMonth = new Date(`${year}-${month}-01`);
     const dayInTheWeek = getDay(firstDateOfMonth);
-    const firstDayIndex = dayInTheWeek === SUNDAY_AS_FIRST_INDEX ? SUNDAY_AS_LAST_INDEX : dayInTheWeek - 1;
+    const firstDayIndex = dayInTheWeek === SUNDAY_AS_FIRST_INDEX ? SUNDAY_AS_LAST_INDEX : dayInTheWeek;
     const cells: (number | undefined)[] = Array.from({ length: CELLS_COUNT });
     cells.splice(firstDayIndex, daysInTheMonthCount, ...daysInTheMonth);
-
-    console.log(dayInTheWeek);
 
     return (
         <div className={classNames.calendar}>
@@ -37,7 +35,7 @@ const Calendar: React.FC<CalendarProps> = ({ month, year, day }) => {
                 <div>Sun</div>
             </div>
             <div className={classNames.calendar__body}>
-                {cells.map((day, index) => (
+                {cells.map((day) => (
                     <div className={classNames.calendar__body__cell}>{day}</div>
                 ))}
             </div>
