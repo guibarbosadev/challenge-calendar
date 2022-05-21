@@ -20,11 +20,16 @@
 
 .body {
     padding-top: 4rem;
-    text-align: center;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 100%;;
 
+
+    text-align: center;
+  
     .select {
         padding: 1rem 2rem;
-        font-size: 3rem;
+        font-size: 2.5rem;
         background-color: rgba(0, 0, 0, 0);
         border: none;
         cursor: pointer;
@@ -33,4 +38,9 @@
             padding: 1rem 2rem;
         }
     }
+}
+
+.calendar {
+  max-width: 1052px;
+  width: 100%;
 }

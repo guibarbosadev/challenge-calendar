@@ -33,7 +33,10 @@ const ChallengeCalendarPage: React.FC = () => {
                     onChange={(option) => option && onSelectChallenge(option)}
                     isSearchable={false}
                 />
-                <Calendar day={isCurrentMonth ? currentDay : undefined} month={selectedDate.month} year={selectedDate.year} />
+
+                <div className={classNames.calendar}>
+                    <Calendar day={isCurrentMonth ? currentDay : undefined} month={selectedDate.month} year={selectedDate.year} />
+                </div>
             </main>
         </>
     );

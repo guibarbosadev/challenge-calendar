@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from './style.module.scss';
 import { format, getDaysInMonth, getDay } from 'date-fns';
+import { chunkArray } from '../../utils/array';
 
 const CELLS_COUNT = 35;
 const SUNDAY_AS_FIRST_INDEX = 0;
@@ -21,6 +22,7 @@ const Calendar: React.FC<CalendarProps> = ({ month, year, day }) => {
     const firstDayIndex = dayInTheWeek === SUNDAY_AS_FIRST_INDEX ? SUNDAY_AS_LAST_INDEX : dayInTheWeek;
     const cells: (number | undefined)[] = Array.from({ length: CELLS_COUNT });
     cells.splice(firstDayIndex, daysInTheMonthCount, ...daysInTheMonth);
+    const weeks = chunkArray([...cells], 7);
 
     return (
         <div className={classNames.calendar}>
@@ -35,8 +37,12 @@ const Calendar: React.FC<CalendarProps> = ({ month, year, day }) => {
                 <div>Sun</div>
             </div>
             <div className={classNames.calendar__body}>
-                {cells.map((day) => (
-                    <div className={classNames.calendar__body__cell}>{day}</div>
+                {weeks.map((week) => (
+                    <div className={classNames.calendar__body__week}>
+                        {week.map((day) => (
+                            <div className={classNames.calendar__body__week__day}>{day}</div>
+                        ))}
+                    </div>
                 ))}
             </div>
         </div>

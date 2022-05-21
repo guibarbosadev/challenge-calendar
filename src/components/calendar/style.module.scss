@@ -1,8 +1,13 @@
 .calendar {
+    border-radius: 50px;
+    overflow: hidden;
+    border: 1px solid black;
+
     &__date {
         background-color: var(--color-primary);
         padding: 10px 0;
         color: #ffffff;
+        font-size: 2.5rem;
     }
 
     &__week {
@@ -13,12 +18,30 @@
     }
 
     &__body {
-        display: grid;
-        grid-template-columns: repeat(7, auto);
+        &__week {
+            border-bottom: 1px solid black;
+            display: grid;
+            grid-template-columns: repeat(7, 14.28%);
 
-        &__cell {
-            padding: 0.625rem 2rem;
-            width: 100%;
+            &:last-child {
+                border-bottom: none;
+            }
+
+            &:first-child {
+                border-top: 1px solid black;
+            }
+
+            &__day {
+                padding: 0.625rem 2rem;
+                font-size: 2rem;
+                width: 100%;
+                border-right: 1px solid black;
+                border-left-width: 0;
+
+                &:last-child {
+                    border-right: none;
+                }
+            }
         }
     }
 }
