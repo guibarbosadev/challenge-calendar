@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from './style.module.scss';
-import { format, getDaysInMonth, getDay } from 'date-fns';
+import { format, getDaysInMonth, getDay, isSameDay } from 'date-fns';
 import { chunkArray } from '../../utils/array';
 
 const CELLS_COUNT = 35;
@@ -23,6 +23,8 @@ const Calendar: React.FC<CalendarProps> = ({ month, year, day }) => {
     const cells: (number | undefined)[] = Array.from({ length: CELLS_COUNT });
     cells.splice(firstDayIndex, daysInTheMonthCount, ...daysInTheMonth);
     const weeks = chunkArray([...cells], 7);
+    const currentDate = new Date();
+    const checkIsSameDay = (weekDay: number) => day === weekDay;
 
     return (
         <div className={classNames.calendar}>
@@ -39,8 +41,14 @@ const Calendar: React.FC<CalendarProps> = ({ month, year, day }) => {
             <div className={classNames.calendar__body}>
                 {weeks.map((week) => (
                     <div className={classNames.calendar__body__week}>
-                        {week.map((day) => (
-                            <div className={classNames.calendar__body__week__day}>{day}</div>
+                        {week.map((weekDay) => (
+                            <div
+                                className={`${classNames.calendar__body__week__day}  ${
+                                    checkIsSameDay(weekDay) ? classNames.calendar__body__week__currentDay : ''
+                                }`}
+                            >
+                                {weekDay}
+                            </div>
                         ))}
                     </div>
                 ))}

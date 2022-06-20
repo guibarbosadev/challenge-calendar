@@ -21,7 +21,7 @@
         &__week {
             border-bottom: 1px solid black;
             display: grid;
-            grid-template-columns: repeat(7, 14.28%);
+            grid-template-columns: repeat(7, 1fr);
 
             &:last-child {
                 border-bottom: none;
@@ -31,12 +31,19 @@
                 border-top: 1px solid black;
             }
 
+            &__currentDay {
+                cursor: pointer;
+            }
+
             &__day {
-                padding: 0.625rem 2rem;
                 font-size: 2rem;
                 width: 100%;
                 border-right: 1px solid black;
                 border-left-width: 0;
+                height: 76px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
                 &:last-child {
                     border-right: none;
