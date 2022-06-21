@@ -1,4 +1,4 @@
-import { Challenge } from '../models/challenge';
+import { Challenge, CalendarDate, CustomDate } from '../models/challenge';
 
 class ChallengeService {
     async fetchChallenges() {
@@ -19,9 +19,16 @@ class ChallengeService {
         const updatedChallenges = await this.fetchChallenges();
 
         return updatedChallenges;
-
-        return [];
     }
+
+    
+
+    async markAsDone(challenge: Challenge, date: CustomDate){
+      challenge.
+      challenges.
+    }
+    
+    
 }
 
 export const challengeService = new ChallengeService();

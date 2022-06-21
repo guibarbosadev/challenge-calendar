@@ -10,12 +10,17 @@ import Calendar from '../../components/calendar/Calendar';
 const ChallengeCalendarPage: React.FC = () => {
     const { challenges, selectedChallenge, selectedDate } = useAppSelector((state) => state.challenge);
     const dispatch = useAppDispatch();
+
+    const isCurrentMonth = selectedDate.year === currentYear && selectedDate.month === currentMonth;
+    const currentDay = new Date().getDate();
+
     const onSelectChallenge = (option: Challenge) => {
         dispatch(selectChallenge(option));
     };
 
-    const isCurrentMonth = selectedDate.year === currentYear && selectedDate.month === currentMonth;
-    const currentDay = new Date().getDate();
+    const toggleCurrentDay = () => {
+        dispatch(toggleMarkedAsDone({}));
+    };
 
     return (
         <>
@@ -35,7 +40,12 @@ const ChallengeCalendarPage: React.FC = () => {
                 />
 
                 <div className={classNames.calendar}>
-                    <Calendar day={isCurrentMonth ? currentDay : undefined} month={selectedDate.month} year={selectedDate.year} />
+                    <Calendar
+                        onClickToday={handleToggleMarkedAsDone}
+                        day={isCurrentMonth ? currentDay : undefined}
+                        month={selectedDate.month}
+                        year={selectedDate.year}
+                    />
                 </div>
             </main>
         </>

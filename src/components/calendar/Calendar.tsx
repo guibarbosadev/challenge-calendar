@@ -11,9 +11,11 @@ interface CalendarProps {
     month: number;
     year: number;
     day?: number;
+    onClickCurrentDate: (monthDay: number) => void;
+    onClickFutureDate?: (monthDay: number) => void;
 }
 
-const Calendar: React.FC<CalendarProps> = ({ month, year, day }) => {
+const Calendar: React.FC<CalendarProps> = ({ month, year, day, onClickCurrentDate, onClickFutureDate }) => {
     const date = new Date(`${year}-${month}-${day}`);
     const daysInTheMonthCount = getDaysInMonth(date);
     const daysInTheMonth = Array.from({ length: daysInTheMonthCount }).map((_, index) => index + 1);
@@ -23,8 +25,22 @@ const Calendar: React.FC<CalendarProps> = ({ month, year, day }) => {
     const cells: (number | undefined)[] = Array.from({ length: CELLS_COUNT });
     cells.splice(firstDayIndex, daysInTheMonthCount, ...daysInTheMonth);
     const weeks = chunkArray([...cells], 7);
-    const currentDate = new Date();
-    const checkIsSameDay = (weekDay: number) => day === weekDay;
+    const currentDayOfMonth = new Date().getDate();
+    const checkIsSameDay = (monthDay: number) => day === monthDay;
+    const checkIsFutureDate = (monthDay: number) => monthDay > currentDayOfMonth;
+    const getOnClickFunc = (monthDay: number) => {
+        let onClickFunc;
+
+        if (checkIsSameDay(monthDay)) {
+            onClickFunc = () => onClickCurrentDate(monthDay);
+        }
+
+        if (checkIsFutureDate(monthDay)) {
+            onClickFunc = () => onClickFutureDate?.(monthDay);
+        }
+
+        return onClickFunc;
+    };
 
     return (
         <div className={classNames.calendar}>
@@ -41,13 +57,14 @@ const Calendar: React.FC<CalendarProps> = ({ month, year, day }) => {
             <div className={classNames.calendar__body}>
                 {weeks.map((week) => (
                     <div className={classNames.calendar__body__week}>
-                        {week.map((weekDay) => (
+                        {week.map((monthDay) => (
                             <div
+                                onClick={getOnClickFunc(monthDay)}
                                 className={`${classNames.calendar__body__week__day}  ${
-                                    checkIsSameDay(weekDay) ? classNames.calendar__body__week__currentDay : ''
+                                    checkIsSameDay(monthDay) ? classNames.calendar__body__week__currentDay : ''
                                 }`}
                             >
-                                {weekDay}
+                                {monthDay}
                             </div>
                         ))}
                     </div>
