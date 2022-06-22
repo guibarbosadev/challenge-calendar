@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ChallengeState } from './challengeType';
-import { createChallenge, getChallenges } from './challengeActions';
+import { createChallenge, getChallenges, markAsDone } from './challengeActions';
 
 export const currentDate = new Date();
+export const currentDay = currentDate.getDate();
 export const currentYear = currentDate.getFullYear();
 export const currentMonth = currentDate.getMonth() + 1;
 
@@ -10,7 +11,6 @@ const initialState: ChallengeState = {
     challenges: [],
     didLoadChallenges: false,
     isLoading: false,
-    calendar: {},
     selectedChallenge: null,
     selectedDate: {
         month: currentMonth,
@@ -50,6 +50,14 @@ const challengeSlice = createSlice({
             })
             .addCase(createChallenge.rejected, (state) => {
                 state.didLoadChallenges = true;
+            })
+            .addCase(markAsDone.fulfilled, (state, action) => {
+                state.challenges = action.payload;
+                state.didLoadChallenges = true;
+                state.selectedChallenge = action.meta.arg.challenge;
+            })
+            .addCase(markAsDone.rejected, (state, action) => {
+                console.log(action.error);
             });
     }
 });

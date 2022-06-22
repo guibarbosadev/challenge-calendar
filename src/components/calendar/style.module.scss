@@ -35,6 +35,10 @@
                 cursor: pointer;
             }
 
+            &__done {
+                background-color: red;
+            }
+
             &__day {
                 font-size: 2rem;
                 width: 100%;

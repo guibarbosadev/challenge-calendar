@@ -1,16 +1,21 @@
-export interface CalendarDate<T> {
+export interface ChallengeCalendar {
     [year: number]: {
         [month: number]: {
-            [day: number]: T;
+            [day: number]: ChallengeStatus;
         };
     };
 }
 
-export type ChallengesCalendar = CalendarDate<{ [id: string]: ChallengeStatus }>;
+export interface CustomDate {
+    year: number;
+    month: number;
+    day: number;
+}
 
 export interface Challenge {
     name: string;
     id: string;
+    calendar: ChallengeCalendar;
 }
 
 export enum ChallengeStatus {

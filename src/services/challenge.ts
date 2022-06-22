@@ -1,4 +1,4 @@
-import { Challenge } from '../models/challenge';
+import { Challenge, ChallengeStatus, CustomDate } from '../models/challenge';
 
 class ChallengeService {
     async fetchChallenges() {
@@ -8,19 +8,52 @@ class ChallengeService {
         return parsedChallenges;
     }
 
-    async saveChallenge(name: string) {
+    async createChallenge(name: string) {
         const currentDate = new Date();
         const id = currentDate.toISOString();
-        const challenge: Challenge = { name, id };
+        const challenge: Challenge = { name, id, calendar: {} };
+        const updatedChallenges = await this.saveChallenge(challenge);
+
+        return updatedChallenges;
+    }
+
+    async saveChallenge(challenge: Challenge) {
         const fetchedChallenges = await this.fetchChallenges();
-        const challenges = fetchedChallenges.concat(challenge);
+        const challengeIndex = fetchedChallenges.findIndex(({ id }) => id === challenge.id);
+        const shouldCreate = challengeIndex === -1;
+        let challenges: Challenge[] = [];
+
+        if (shouldCreate) {
+            challenges = [...fetchedChallenges, challenge];
+        } else {
+            challenges[challengeIndex] = challenge;
+        }
 
         await localStorage.setItem('challenges', JSON.stringify(challenges));
         const updatedChallenges = await this.fetchChallenges();
 
         return updatedChallenges;
+    }
 
-        return [];
+    async markDay(challenge: Challenge, date: CustomDate, status: ChallengeStatus) {}
+
+    async markAsDone(challenge: Challenge, date: CustomDate) {
+        const { year, month, day } = date;
+        const { calendar } = { ...challenge };
+        const currentCalendar = {
+            ...calendar,
+            [year]: {
+                ...calendar[year],
+                [month]: {
+                    ...calendar[year]?.[month],
+                    [day]: ChallengeStatus.Done
+                }
+            }
+        };
+        const updatedChallenge = { ...challenge, calendar: currentCalendar };
+        const updatedChallenges = await this.saveChallenge(updatedChallenge);
+
+        return updatedChallenges;
     }
 }
 
