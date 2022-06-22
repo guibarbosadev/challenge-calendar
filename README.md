@@ -1,6 +1,6 @@
 # Streak calendar
 
-* [ ] Create calendar page
+* [x] Create calendar page
   * [x] Calendar page [layout](https://www.figma.com/file/hD95VJ1E2uOcWqIz8qIkqX/Streak-Calendar?node-id=11%3A13)
   * [x] Fetch challenge data
   * [x] Mark 'done' days
@@ -15,5 +15,7 @@
   * [x] Create Logo
   * [x] Redirect user to calendar page after creation
   * [x] Record challenge locally
-  * [x] Add validation 
+  * [x] Add validation
+
+* [] List missing features
   
