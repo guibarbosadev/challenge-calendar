@@ -51,9 +51,9 @@ class ChallengeService {
             }
         };
         const updatedChallenge = { ...challenge, calendar: currentCalendar };
-        const updatedChallenges = await this.saveChallenge(updatedChallenge);
+        await this.saveChallenge(updatedChallenge);
 
-        return updatedChallenges;
+        return updatedChallenge;
     }
 }
 

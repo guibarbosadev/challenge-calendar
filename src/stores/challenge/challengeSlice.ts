@@ -52,9 +52,7 @@ const challengeSlice = createSlice({
                 state.didLoadChallenges = true;
             })
             .addCase(markAsDone.fulfilled, (state, action) => {
-                state.challenges = action.payload;
-                state.didLoadChallenges = true;
-                state.selectedChallenge = action.meta.arg.challenge;
+                state.selectedChallenge = action.payload;
             })
             .addCase(markAsDone.rejected, (state, action) => {
                 // TODO: show error notification
