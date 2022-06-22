@@ -57,7 +57,7 @@ const challengeSlice = createSlice({
                 state.selectedChallenge = action.meta.arg.challenge;
             })
             .addCase(markAsDone.rejected, (state, action) => {
-                console.log(action.error);
+                // TODO: show error notification
             });
     }
 });

@@ -45,8 +45,6 @@ const Calendar: React.FC<CalendarProps> = ({ challenge, month, year, day, onClic
         return onClickFunc;
     };
 
-    console.log(challenge.calendar[2022][6][21]);
-
     return (
         <div className={classNames.calendar}>
             <div className={classNames.calendar__date}>{format(date, 'MMM yyyy')}</div>
