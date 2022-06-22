@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { challengeService } from '../../services/challenge';
-import { Challenge, CustomDate } from '../../models/challenge';
+import { Challenge, EChallengeStatus, CustomDate } from '../../models/challenge';
 
-interface MarkAsDoneParams {
+interface MarkAsSomethingParams {
     challenge: Challenge;
     date: CustomDate;
 }
@@ -15,6 +15,14 @@ export const createChallenge = createAsyncThunk('challenge/createChallenge', asy
     return await challengeService.createChallenge(name);
 });
 
-export const markAsDone = createAsyncThunk('challenge/markAsDone', async ({ challenge, date }: MarkAsDoneParams) => {
-    return await challengeService.markAsDone(challenge, date);
+export const markAsDone = createAsyncThunk('challenge/markAsDone', async ({ challenge, date }: MarkAsSomethingParams) => {
+    return await challengeService.markDay(challenge, date, EChallengeStatus.Done);
+});
+
+export const markAsSkipped = createAsyncThunk('challenge/markAsFailed', async ({ challenge, date }: MarkAsSomethingParams) => {
+    return await challengeService.markDay(challenge, date, EChallengeStatus.Skipped);
+});
+
+export const unmarkDay = createAsyncThunk('challenge/unmarkDay', async ({ challenge, date }: MarkAsSomethingParams) => {
+    return await challengeService.markDay(challenge, date);
 });

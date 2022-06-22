@@ -1,7 +1,7 @@
 export interface ChallengeCalendar {
     [year: number]: {
         [month: number]: {
-            [day: number]: ChallengeStatus;
+            [day: number]: TChallengeStatus;
         };
     };
 }
@@ -18,8 +18,10 @@ export interface Challenge {
     calendar: ChallengeCalendar;
 }
 
-export enum ChallengeStatus {
+export enum EChallengeStatus {
     Done = 'done',
     Skipped = 'skipped',
     Failed = 'failed'
 }
+
+export type TChallengeStatus = EChallengeStatus | undefined;

@@ -1,4 +1,4 @@
-import { Challenge, ChallengeStatus, CustomDate } from '../models/challenge';
+import { Challenge, TChallengeStatus, CustomDate, ChallengeCalendar } from '../models/challenge';
 
 class ChallengeService {
     async fetchChallenges() {
@@ -35,18 +35,16 @@ class ChallengeService {
         return updatedChallenges;
     }
 
-    async markDay(challenge: Challenge, date: CustomDate, status: ChallengeStatus) {}
-
-    async markAsDone(challenge: Challenge, date: CustomDate) {
+    async markDay(challenge: Challenge, date: CustomDate, status?: TChallengeStatus) {
         const { year, month, day } = date;
         const { calendar } = { ...challenge };
-        const currentCalendar = {
+        const currentCalendar: ChallengeCalendar = {
             ...calendar,
             [year]: {
                 ...calendar[year],
                 [month]: {
                     ...calendar[year]?.[month],
-                    [day]: ChallengeStatus.Done
+                    [day]: status
                 }
             }
         };

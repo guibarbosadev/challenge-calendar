@@ -3,10 +3,10 @@ import Logo from '../../components/logo/Logo';
 import { useAppSelector, useAppDispatch } from '../../stores/hooks';
 import classNames from './styles.module.scss';
 import Select from 'react-select';
-import { Challenge, ChallengeStatus, CustomDate } from '../../models/challenge';
+import { Challenge, EChallengeStatus, TChallengeStatus, CustomDate } from '../../models/challenge';
 import { currentYear, selectChallenge, currentMonth, currentDay } from '../../stores/challenge/challengeSlice';
 import Calendar from '../../components/calendar/Calendar';
-import { markAsDone } from '../../stores/challenge/challengeActions';
+import { markAsDone, markAsSkipped, unmarkDay } from '../../stores/challenge/challengeActions';
 
 const ChallengeCalendarPage: React.FC = () => {
     const { challenges, selectedChallenge, selectedDate } = useAppSelector((state) => state.challenge);
@@ -18,9 +18,9 @@ const ChallengeCalendarPage: React.FC = () => {
         dispatch(selectChallenge(option));
     };
 
-    const toggleCurrentDay = (status?: ChallengeStatus) => {
+    const toggleCurrentDate = (status: TChallengeStatus) => {
         if (selectedChallenge) {
-            const canMarkAsDone = !status || status === ChallengeStatus.Failed;
+            const canMarkAsDone = !status || status === EChallengeStatus.Failed;
 
             if (canMarkAsDone) {
                 const date: CustomDate = {
@@ -29,6 +29,16 @@ const ChallengeCalendarPage: React.FC = () => {
                     year: currentYear
                 };
                 dispatch(markAsDone({ challenge: selectedChallenge, date }));
+            }
+        }
+    };
+
+    const toggleFutureDate = (date: CustomDate) => {
+        if (selectedChallenge) {
+            if (selectedChallenge?.calendar?.[selectedDate.year]?.[selectedDate.month]?.[date.day]) {
+                dispatch(unmarkDay({ challenge: selectedChallenge, date }));
+            } else {
+                dispatch(markAsSkipped({ challenge: selectedChallenge, date }));
             }
         }
     };
@@ -54,7 +64,8 @@ const ChallengeCalendarPage: React.FC = () => {
                     <div className={classNames.calendar}>
                         <Calendar
                             challenge={selectedChallenge}
-                            onClickCurrentDate={toggleCurrentDay}
+                            onClickCurrentDate={toggleCurrentDate}
+                            onClickFutureDate={toggleFutureDate}
                             day={isCurrentMonth ? currentDay : undefined}
                             month={selectedDate.month}
                             year={selectedDate.year}

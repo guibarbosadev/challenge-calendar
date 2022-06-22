@@ -31,12 +31,20 @@
                 border-top: 1px solid black;
             }
 
-            &__currentDay {
+            &__currentDate {
+                cursor: pointer;
+            }
+
+            &__futureDate {
                 cursor: pointer;
             }
 
             &__done {
                 background-color: red;
+            }
+
+            &__skipped {
+                background-color: greenyellow;
             }
 
             &__day {
