@@ -1,9 +1,9 @@
 # Streak calendar
 
 * [ ] Create calendar page
-  * [ ] Calendar page [layout](https://www.figma.com/file/hD95VJ1E2uOcWqIz8qIkqX/Streak-Calendar?node-id=11%3A13)
-  * [ ] Fetch challenge data
-  * [ ] Mark 'done' days
+  * [x] Calendar page [layout](https://www.figma.com/file/hD95VJ1E2uOcWqIz8qIkqX/Streak-Calendar?node-id=11%3A13)
+  * [x] Fetch challenge data
+  * [x] Mark 'done' days
   * [ ] Allow to schedule "break" days
 * [x] General
   * [x] Automatically redirect user to calendar|form page
