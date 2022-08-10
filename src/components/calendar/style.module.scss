@@ -1,3 +1,6 @@
+$r: rgb(255, 0, 0);
+$rT: rgba(255, 0, 0, 0);
+
 .calendar {
     border-radius: 50px;
     overflow: hidden;
@@ -40,7 +43,16 @@
             }
 
             &__done {
-                background-color: red;
+                position: relative;
+
+                &::after {
+                    background: linear-gradient(45deg, $rT 48.5%, $r 48.5% 51.5%, $rT 51.5% 100%),
+                        linear-gradient(-45deg, $rT 48.5%, $r 48.5% 51.5%, $rT 51.5% 100%);
+                    content: '';
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                }
             }
 
             &__skipped {
@@ -49,11 +61,10 @@
 
             &__day {
                 font-size: 2rem;
-                width: 100%;
                 border-right: 1px solid black;
                 border-left-width: 0;
-                height: 76px;
                 display: flex;
+                aspect-ratio: 1 / 1;
                 align-items: center;
                 justify-content: center;
 

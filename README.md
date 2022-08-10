@@ -14,7 +14,7 @@
   * [x] Create calendar|form page components
   * [x] Setup prettier
   * [x] Add some 'loading' feedback while checking if has some current challenge
-  * [ ] Show a 'x' on 'done' days
+  * [x] Show a 'x' on 'done' days
   * [ ] Show a 'beach chair' on skipped days
   * [ ] Turn relative into absolute imports 
   * [ ] Make site responsive
