@@ -1,6 +1,6 @@
 # Streak calendar
 
-* [] TODO
+* [ ] TODO
   * [x] Calendar page [layout](https://www.figma.com/file/hD95VJ1E2uOcWqIz8qIkqX/Streak-Calendar?node-id=11%3A13)
   * [x] Fetch challenge data
   * [x] Mark 'done' days
@@ -15,7 +15,9 @@
   * [x] Setup prettier
   * [x] Add some 'loading' feedback while checking if has some current challenge
   * [x] Show a 'x' on 'done' days
-  * [ ] Show a 'beach chair' on skipped days
+  * [ ] Animate 'x' when marking current day as 'done'
+  * [ ] Allow to unmark a 'rest day'  
+  * [ ] Show a 'beach chair' on rest days
   * [ ] Turn relative into absolute imports 
   * [ ] Make site responsive
   * [ ] Automatically show calendar when a challenge is created
