@@ -1,0 +1,106 @@
+.day {
+    font-size: 2rem;
+    border-right: 1px solid black;
+    border-left-width: 0;
+    display: flex;
+    aspect-ratio: 1 / 1;
+    align-items: center;
+    justify-content: center;
+
+    &.clickable {
+        cursor: pointer;
+    }
+
+    &:last-child {
+        border-right: none;
+        border-bottom: none;
+    }
+
+    &:first-child {
+        border-top: 1px solid black;
+    }
+
+    &.done {
+        position: relative;
+
+        &:not(.didUpdate) {
+            &::before {
+                top: -21%;
+                right: 48%;
+                height: 140%;
+            }
+
+            &::after {
+                top: -21%;
+                left: 48%;
+                height: 140%;
+            }
+        }
+
+        &.done.didUpdate {
+            &::before,
+            &::after {
+                animation-duration: 0.4s;
+                animation-fill-mode: forwards;
+            }
+
+            &::before {
+                animation-name: stretch-right;
+                animation-delay: 0.4s;
+            }
+
+            &::after {
+                animation-name: stretch-left;
+            }
+
+            @keyframes stretch-right {
+                0% {
+                    top: 0;
+                    right: 0;
+                    height: 0;
+                }
+
+                100% {
+                    top: -21%;
+                    right: 48%;
+                    height: 140%;
+                }
+            }
+
+            @keyframes stretch-left {
+                0% {
+                    top: 0;
+                    left: 0;
+                    height: 0;
+                }
+
+                100% {
+                    top: -21%;
+                    left: 48%;
+                    height: 140%;
+                }
+            }
+        }
+
+        &::before,
+        &::after {
+            width: 5px;
+            background-color: var(--color-primary);
+            border-radius: 5px;
+            content: '';
+            position: absolute;
+        }
+
+        &::before {
+            transform: rotate(45deg);
+        }
+
+        &::after {
+            transform: rotate(-45deg);
+        }
+    }
+
+    &.skipped {
+        background-color: greenyellow;
+    }
+}

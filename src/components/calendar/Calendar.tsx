@@ -2,7 +2,9 @@ import React from 'react';
 import classNames from './style.module.scss';
 import { format, getDaysInMonth, getDay } from 'date-fns';
 import { chunkArray } from '../../utils/array';
-import { EChallengeStatus, Challenge, TChallengeStatus, CustomDate } from '../../models/challenge';
+import { Challenge, TChallengeStatus, CustomDate } from '../../models/challenge';
+import CalendarCell from '../calendar-cell/CalendarCell';
+import { getDayStatus } from '../../utils/challenge';
 
 const CELLS_COUNT = 35;
 const SUNDAY_AS_FIRST_INDEX = 0;
@@ -29,9 +31,9 @@ const Calendar: React.FC<CalendarProps> = ({ challenge, month, year, day, onClic
     const weeks = chunkArray([...cells], 7);
     const currentDayOfMonth = new Date().getDate();
     const checkIsSameDay = (monthDay: number) => day === monthDay;
-    const checkIsDone = (monthDay: number) => challenge.calendar?.[year]?.[month]?.[monthDay] === EChallengeStatus.Done;
     const checkIsFutureDate = (monthDay: number) => monthDay > currentDayOfMonth;
-    const checkIsSkipped = (monthDay: number) => challenge.calendar?.[year]?.[month]?.[monthDay] === EChallengeStatus.Skipped;
+    const checkIsCellClickable = (monthDay: number) => checkIsSameDay(monthDay) || checkIsFutureDate(monthDay);
+
     const getOnClickFunc = (monthDay: number) => {
         let onClickFunc;
 
@@ -46,30 +48,6 @@ const Calendar: React.FC<CalendarProps> = ({ challenge, month, year, day, onClic
         }
 
         return onClickFunc;
-    };
-
-    const getCellClassNames = (monthDay: number) => {
-        let cellClassNames = [classNames.calendar__body__week__day];
-
-        if (checkIsSameDay(monthDay)) {
-            cellClassNames = [...cellClassNames, classNames.calendar__body__week__currentDate];
-        }
-
-        if (checkIsDone(monthDay)) {
-            cellClassNames = [...cellClassNames, classNames.calendar__body__week__done];
-        }
-
-        if (checkIsFutureDate(monthDay)) {
-            cellClassNames = [...cellClassNames, classNames.calendar__body__week__futureDate];
-        }
-
-        if (checkIsSkipped(monthDay)) {
-            cellClassNames = [...cellClassNames, classNames.calendar__body__week__skipped];
-        }
-
-        const response = cellClassNames.join(' ');
-
-        return response;
     };
 
     return (
@@ -87,11 +65,14 @@ const Calendar: React.FC<CalendarProps> = ({ challenge, month, year, day, onClic
             <div className={classNames.calendar__body}>
                 {weeks.map((week) => (
                     <div className={classNames.calendar__body__week}>
-                        {/* TODO: extrac CalendarCell */}
                         {week.map((monthDay) => (
-                            <div key={monthDay} onClick={getOnClickFunc(monthDay)} className={getCellClassNames(monthDay)}>
-                                {monthDay}
-                            </div>
+                            <CalendarCell
+                                key={monthDay}
+                                status={getDayStatus(challenge.calendar, { year, month, day: monthDay })}
+                                onClick={getOnClickFunc(monthDay)}
+                                day={monthDay}
+                                isClickable={checkIsCellClickable(monthDay)}
+                            />
                         ))}
                     </div>
                 ))}

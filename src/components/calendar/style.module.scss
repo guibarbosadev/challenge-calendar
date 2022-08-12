@@ -25,53 +25,6 @@ $rT: rgba(255, 0, 0, 0);
             border-bottom: 1px solid black;
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-
-            &:last-child {
-                border-bottom: none;
-            }
-
-            &:first-child {
-                border-top: 1px solid black;
-            }
-
-            &__currentDate {
-                cursor: pointer;
-            }
-
-            &__futureDate {
-                cursor: pointer;
-            }
-
-            &__done {
-                position: relative;
-
-                &::after {
-                    background: linear-gradient(45deg, $rT 48.5%, $r 48.5% 51.5%, $rT 51.5% 100%),
-                        linear-gradient(-45deg, $rT 48.5%, $r 48.5% 51.5%, $rT 51.5% 100%);
-                    content: '';
-                    height: 100%;
-                    width: 100%;
-                    position: absolute;
-                }
-            }
-
-            &__skipped {
-                background-color: greenyellow;
-            }
-
-            &__day {
-                font-size: 2rem;
-                border-right: 1px solid black;
-                border-left-width: 0;
-                display: flex;
-                aspect-ratio: 1 / 1;
-                align-items: center;
-                justify-content: center;
-
-                &:last-child {
-                    border-right: none;
-                }
-            }
         }
     }
 }
