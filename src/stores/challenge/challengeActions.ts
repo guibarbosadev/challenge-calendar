@@ -19,7 +19,7 @@ export const markAsDone = createAsyncThunk('challenge/markAsDone', async ({ chal
     return await challengeService.markDay(challenge, date, EChallengeStatus.Done);
 });
 
-export const markAsSkipped = createAsyncThunk('challenge/markAsFailed', async ({ challenge, date }: MarkAsSomethingParams) => {
+export const markAsSkipped = createAsyncThunk('challenge/markAsSkipped', async ({ challenge, date }: MarkAsSomethingParams) => {
     return await challengeService.markDay(challenge, date, EChallengeStatus.Skipped);
 });
 

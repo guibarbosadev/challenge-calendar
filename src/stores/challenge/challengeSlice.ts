@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ChallengeState } from './challengeType';
-import { createChallenge, getChallenges, markAsDone, markAsSkipped } from './challengeActions';
+import { createChallenge, getChallenges, markAsDone, markAsSkipped, unmarkDay } from './challengeActions';
 
 export const currentDate = new Date();
 export const currentDay = currentDate.getDate();
@@ -61,6 +61,12 @@ const challengeSlice = createSlice({
                 state.selectedChallenge = action.payload;
             })
             .addCase(markAsSkipped.rejected, (state, action) => {
+                // TODO: show error notification
+            })
+            .addCase(unmarkDay.fulfilled, (state, action) => {
+                state.selectedChallenge = action.payload;
+            })
+            .addCase(unmarkDay.rejected, (state) => {
                 // TODO: show error notification
             });
     }

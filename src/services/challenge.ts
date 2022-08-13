@@ -38,6 +38,7 @@ class ChallengeService {
     async markDay(challenge: Challenge, date: CustomDate, status?: TChallengeStatus) {
         const { year, month, day } = date;
         const { calendar } = { ...challenge };
+
         const currentCalendar: ChallengeCalendar = {
             ...calendar,
             [year]: {
@@ -48,6 +49,11 @@ class ChallengeService {
                 }
             }
         };
+
+        if (!status) {
+            delete currentCalendar[year][month][day];
+        }
+
         const updatedChallenge = { ...challenge, calendar: currentCalendar };
         await this.saveChallenge(updatedChallenge);
 

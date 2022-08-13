@@ -16,7 +16,7 @@
   * [x] Add some 'loading' feedback while checking if has some current challenge
   * [x] Show a 'x' on 'done' days
   * [x] Animate 'x' when marking current day as 'done'
-  * [ ] Allow to unmark a 'rest day'  
+  * [x] Allow to unmark a 'rest day'  
   * [ ] Show a 'beach chair' on rest days
   * [ ] Turn relative into absolute imports 
   * [ ] Make site responsive
