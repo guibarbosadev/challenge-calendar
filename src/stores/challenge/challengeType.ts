@@ -1,4 +1,4 @@
-import { Challenge } from '../../models/challenge';
+import { Challenge } from '@models/challenge';
 
 export interface ChallengeState {
     didLoadChallenges: boolean;

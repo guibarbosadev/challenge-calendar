@@ -1,4 +1,4 @@
-import { Challenge, TChallengeStatus, CustomDate, ChallengeCalendar } from '../models/challenge';
+import { Challenge, TChallengeStatus, CustomDate, ChallengeCalendar } from '@models/challenge';
 
 class ChallengeService {
     async fetchChallenges() {

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Redirect } from 'react-router';
-import { ERoutes } from '../../Router';
-import ChallengeCreationPage from '../challenge-creation/ChallengeCreationPage';
-import Loading from '../../components/loading/Loading';
+import { ERoutes } from '@models/routes';
+import ChallengeCreationPage from '@pages/challenge-creation/ChallengeCreationPage';
+import Loading from '@components/loading/Loading';
 import styles from './styles.module.scss';
-import { useAppDispatch, useAppSelector } from '../../stores/hooks';
-import { getChallenges as createGetChallengesAction } from '../../stores/challenge/challengeActions';
+import { useAppDispatch, useAppSelector } from '@stores/hooks';
+import { getChallenges as createGetChallengesAction } from '@stores/challenge/challengeActions';
 
 const HomePage = () => {
     const dispatch = useAppDispatch();

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { challengeService } from '../../services/challenge';
-import { Challenge, EChallengeStatus, CustomDate } from '../../models/challenge';
+import { challengeService } from '@services/challenge';
+import { Challenge, EChallengeStatus, CustomDate } from '@models/challenge';
 
 interface MarkAsSomethingParams {
     challenge: Challenge;

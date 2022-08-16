@@ -1,4 +1,4 @@
-import { ChallengeCalendar, CustomDate, EChallengeStatus, TChallengeStatus } from '../models/challenge';
+import { ChallengeCalendar, CustomDate, EChallengeStatus, TChallengeStatus } from '@models/challenge';
 
 export function getDayStatus(calendar: ChallengeCalendar, date: CustomDate): TChallengeStatus {
     const { year, month, day } = date;

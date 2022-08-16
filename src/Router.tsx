@@ -1,14 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import ChallengeCalendarPage from './pages/challenge-calendar/ChallengeCalendarPage';
-import ChallengeCreationPage from './pages/challenge-creation/ChallengeCreationPage';
-import HomePage from './pages/home/HomePage';
-import { useAppSelector } from './stores/hooks';
-
-export enum ERoutes {
-    CreateChallenge = '/create-challenge',
-    Calendar = '/calendar'
-}
+import ChallengeCalendarPage from '@pages/challenge-calendar/ChallengeCalendarPage';
+import ChallengeCreationPage from '@pages/challenge-creation/ChallengeCreationPage';
+import HomePage from '@pages/home/HomePage';
+import { useAppSelector } from '@stores/hooks';
+import { ERoutes } from '@models/routes';
 
 const Router = () => {
     const { challenges, didLoadChallenges } = useAppSelector((state) => state.challenge);

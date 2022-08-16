@@ -1,12 +1,12 @@
 import React from 'react';
-import Logo from '../../components/logo/Logo';
-import { useAppSelector, useAppDispatch } from '../../stores/hooks';
+import Logo from '@components/logo/Logo';
+import { useAppSelector, useAppDispatch } from '@stores/hooks';
 import classNames from './styles.module.scss';
 import Select from 'react-select';
-import { Challenge, EChallengeStatus, TChallengeStatus, CustomDate } from '../../models/challenge';
-import { currentYear, selectChallenge, currentMonth, currentDay } from '../../stores/challenge/challengeSlice';
-import Calendar from '../../components/calendar/Calendar';
-import { markAsDone, markAsSkipped, unmarkDay } from '../../stores/challenge/challengeActions';
+import { Challenge, EChallengeStatus, TChallengeStatus, CustomDate } from '@models/challenge';
+import { currentYear, selectChallenge, currentMonth, currentDay } from '@stores/challenge/challengeSlice';
+import Calendar from '@components/calendar/Calendar';
+import { markAsDone, markAsSkipped, unmarkDay } from '@stores/challenge/challengeActions';
 
 const ChallengeCalendarPage: React.FC = () => {
     const { challenges, selectedChallenge, selectedDate } = useAppSelector((state) => state.challenge);

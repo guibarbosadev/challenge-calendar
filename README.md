@@ -18,7 +18,7 @@
   * [x] Animate 'x' when marking current day as 'done'
   * [x] Allow to unmark a 'rest day'  
   * [x] Show a 'blue circle' on rest days
-  * [ ] Turn relative into absolute imports 
+  * [x] Turn relative into absolute imports 
   * [ ] Make site responsive
   * [ ] Automatically show calendar when a challenge is created
   * [ ] Allow to select month 

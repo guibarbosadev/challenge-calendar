@@ -1,10 +1,10 @@
 import React from 'react';
 import classNames from './style.module.scss';
 import { format, getDaysInMonth, getDay } from 'date-fns';
-import { chunkArray } from '../../utils/array';
-import { Challenge, TChallengeStatus, CustomDate } from '../../models/challenge';
-import CalendarCell from '../calendar-cell/CalendarCell';
-import { getDayStatus } from '../../utils/challenge';
+import { chunkArray } from '@utils/array';
+import { Challenge, TChallengeStatus, CustomDate } from '@models/challenge';
+import CalendarCell from '@components/calendar-cell/CalendarCell';
+import { getDayStatus } from '@utils/challenge';
 
 const CELLS_COUNT = 35;
 const SUNDAY_AS_FIRST_INDEX = 0;

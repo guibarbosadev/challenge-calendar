@@ -1,23 +1,31 @@
 {
-  "compilerOptions": {
-    "target": "ES5",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": ["vite/client"],
-    "allowJs": false,
-    "skipLibCheck": false,
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react",
-    "useDefineForClassFields": true,
-    "experimentalDecorators": true
-  },
-  
-  "include": ["./src"]
+    "compilerOptions": {
+        "target": "ES5",
+        "baseUrl": ".",
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
+        "types": ["vite/client"],
+        "allowJs": false,
+        "skipLibCheck": false,
+        "esModuleInterop": false,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "jsx": "react",
+        "useDefineForClassFields": true,
+        "experimentalDecorators": true,
+        "paths": {
+            "@components/*": ["./src/components/*"],
+            "@models/*": ["./src/models/*"],
+            "@pages/*": ["./src/pages/*"],
+            "@services/*": ["./src/services/*"],
+            "@stores/*": ["./src/stores/*"],
+            "@utils/*": ["./src/utils/*"]
+        }
+    },
+    "include": ["./src"]
 }

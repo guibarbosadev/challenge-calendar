@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect } from 'react';
-import { ChallengeCalendar, EChallengeStatus, TChallengeStatus } from '../../models/challenge';
+import { ChallengeCalendar, EChallengeStatus, TChallengeStatus } from '@models/challenge';
 import classNames from './style.module.scss';
 
 interface CalendarCellProps {

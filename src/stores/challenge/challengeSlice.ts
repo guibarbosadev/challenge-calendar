@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ChallengeState } from './challengeType';
-import { createChallenge, getChallenges, markAsDone, markAsSkipped, unmarkDay } from './challengeActions';
+import { ChallengeState } from '@stores/challenge/challengeType';
+import { createChallenge, getChallenges, markAsDone, markAsSkipped, unmarkDay } from '@stores/challenge/challengeActions';
 
 export const currentDate = new Date();
 export const currentDay = currentDate.getDate();
