@@ -101,6 +101,17 @@
     }
 
     &.skipped {
-        background-color: greenyellow;
+        position: relative;
+
+        &::after {
+            position: absolute;
+            top: 10%;
+            bottom: 10%;
+            left: 10%;
+            right: 10%;
+            border: 2px solid blue;
+            content: '';
+            border-radius: 50%;
+        }
     }
 }
