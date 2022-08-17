@@ -20,7 +20,9 @@ const ChallengeCalendarPage: React.FC = () => {
 
     const toggleCurrentDate = (status: TChallengeStatus) => {
         if (selectedChallenge) {
-            const canMarkAsDone = !status || status === EChallengeStatus.Failed;
+            const overridableStatus: EChallengeStatus[] = [EChallengeStatus.Skipped, EChallengeStatus.Failed];
+            const isOverridable = overridableStatus.includes(status as EChallengeStatus);
+            const canMarkAsDone = !status || isOverridable;
 
             if (canMarkAsDone) {
                 const date: CustomDate = {

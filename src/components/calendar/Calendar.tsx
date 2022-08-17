@@ -63,8 +63,8 @@ const Calendar: React.FC<CalendarProps> = ({ challenge, month, year, day, onClic
                 <div>Sun</div>
             </div>
             <div className={classNames.calendar__body}>
-                {weeks.map((week) => (
-                    <div className={classNames.calendar__body__week}>
+                {weeks.map((week, index) => (
+                    <div key={index} className={classNames.calendar__body__week}>
                         {week.map((monthDay) => (
                             <CalendarCell
                                 key={monthDay}
