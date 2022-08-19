@@ -6,7 +6,8 @@ import { chunkArray } from '@utils/array';
 import classNames from './style.module.scss';
 import { getDayStatus } from '@utils/challenge';
 import CalendarCell from '@components/calendar-cell/CalendarCell';
-import { isSameMonth } from 'date-fns/esm';
+import isSameMonth from 'date-fns/isSameMonth';
+import compareDesc from 'date-fns/compareDesc';
 
 interface CalendarBodyProps {
     calendarMonth: CalendarMonth;
@@ -21,8 +22,9 @@ const SUNDAY_AS_LAST_INDEX = 6;
 
 const CalendarBody: React.FC<CalendarBodyProps> = ({ calendar, calendarMonth, onClickCurrentDate, onClickFutureDate }) => {
     const { year, month } = calendarMonth;
-    const date = new Date(`${year}-${month}-01`);
+    const date = new Date(`${year}-${month}-02`);
 
+    const currentDate = new Date();
     const daysInTheMonthCount = getDaysInMonth(date);
     const daysInTheMonth = Array.from({ length: daysInTheMonthCount }).map((_, index) => index + 1);
     const dayInTheWeek = getDay(date);
@@ -32,7 +34,15 @@ const CalendarBody: React.FC<CalendarBodyProps> = ({ calendar, calendarMonth, on
     const weeks = chunkArray([...cells], 7);
     const currentDayOfMonth = new Date().getDate();
     const checkIsSameDay = (monthDay: number) => isSameMonth(date, new Date()) && currentDayOfMonth === monthDay;
-    const checkIsFutureDate = (monthDay: number) => monthDay > currentDayOfMonth;
+    const checkIsFutureDate = (monthDay: number) => {
+        const cellDate = new Date(`${year}-${month}-${monthDay}`);
+        const isFutureMonth = Boolean(compareDesc(cellDate, currentDate) === -1 ? true : false);
+        const isOnCurrentMonth = isSameMonth(cellDate, currentDate);
+        const isMonthDayBigger = monthDay > currentDayOfMonth;
+        const isFutureDate = isFutureMonth || (isOnCurrentMonth && isMonthDayBigger);
+
+        return isFutureDate;
+    };
     const checkIsCellClickable = (monthDay: number) => checkIsSameDay(monthDay) || checkIsFutureDate(monthDay);
 
     const getOnClickFunc = (monthDay: number) => {
