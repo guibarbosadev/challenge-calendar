@@ -4,23 +4,29 @@ import { useAppSelector, useAppDispatch } from '@stores/hooks';
 import classNames from './styles.module.scss';
 import Select from 'react-select';
 import { Challenge, EChallengeStatus, TChallengeStatus, CustomDate } from '@models/challenge';
-import { currentYear, selectChallenge, currentMonth, currentDay } from '@stores/challenge/challengeSlice';
+import { currentYear, selectChallenge, currentMonth, currentDay, selectMonth } from '@stores/challenge/challengeSlice';
 import Calendar from '@components/calendar/Calendar';
 import { markAsDone, markAsSkipped, unmarkDay } from '@stores/challenge/challengeActions';
+import getDate from 'date-fns/getDate';
+
+const LAST_MONTH_OF_YEAR = 12;
+const FIRST_MONTH_OF_YEAR = 1;
 
 const ChallengeCalendarPage: React.FC = () => {
-    const { challenges, selectedChallenge, selectedDate } = useAppSelector((state) => state.challenge);
+    const { challenges, selectedChallenge, selectedMonth } = useAppSelector((state) => state.challenge);
     const dispatch = useAppDispatch();
 
-    const isCurrentMonth = selectedDate.year === currentYear && selectedDate.month === currentMonth;
+    const isCurrentMonth = selectedMonth.year === currentYear && selectedMonth.month === currentMonth;
 
     const onSelectChallenge = (option: Challenge) => {
         dispatch(selectChallenge(option));
     };
 
-    const toggleCurrentDate = (status: TChallengeStatus) => {
+    const toggleCurrentDate = () => {
         if (selectedChallenge) {
             const overridableStatus: EChallengeStatus[] = [EChallengeStatus.Skipped, EChallengeStatus.Failed];
+            const day = getDate(new Date());
+            const status = selectedChallenge.calendar?.[selectedMonth.year]?.[selectedMonth.month]?.[day];
             const isOverridable = overridableStatus.includes(status as EChallengeStatus);
             const canMarkAsDone = !status || isOverridable;
 
@@ -37,12 +43,28 @@ const ChallengeCalendarPage: React.FC = () => {
 
     const toggleFutureDate = (date: CustomDate) => {
         if (selectedChallenge) {
-            if (selectedChallenge?.calendar?.[selectedDate.year]?.[selectedDate.month]?.[date.day]) {
+            if (selectedChallenge?.calendar?.[selectedMonth.year]?.[selectedMonth.month]?.[date.day]) {
                 dispatch(unmarkDay({ challenge: selectedChallenge, date }));
             } else {
                 dispatch(markAsSkipped({ challenge: selectedChallenge, date }));
             }
         }
+    };
+
+    const onClickPreviousMonth = () => {
+        const isFirstMonth = selectedMonth.month === FIRST_MONTH_OF_YEAR;
+        const month = isFirstMonth ? LAST_MONTH_OF_YEAR : selectedMonth.month - 1;
+        const year = isFirstMonth ? selectedMonth.year - 1 : selectedMonth.year;
+
+        dispatch(selectMonth({ month, year }));
+    };
+
+    const onClickNextMonth = () => {
+        const isLastMonth = selectedMonth.month === LAST_MONTH_OF_YEAR;
+        const nextMonth: number = isLastMonth ? FIRST_MONTH_OF_YEAR : selectedMonth.month + 1;
+        const nextYear: number = isLastMonth ? selectedMonth.year + 1 : selectedMonth.year;
+
+        dispatch(selectMonth({ month: nextMonth, year: nextYear }));
     };
 
     return (
@@ -65,12 +87,14 @@ const ChallengeCalendarPage: React.FC = () => {
                 {selectedChallenge && (
                     <div className={classNames.calendar}>
                         <Calendar
-                            challenge={selectedChallenge}
+                            calendar={selectedChallenge.calendar}
                             onClickCurrentDate={toggleCurrentDate}
                             onClickFutureDate={toggleFutureDate}
+                            onClickNextMonth={onClickNextMonth}
+                            onClickPreviousMonth={onClickPreviousMonth}
                             day={isCurrentMonth ? currentDay : undefined}
-                            month={selectedDate.month}
-                            year={selectedDate.year}
+                            month={selectedMonth.month}
+                            year={selectedMonth.year}
                         />
                     </div>
                 )}

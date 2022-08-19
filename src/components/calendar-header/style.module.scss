@@ -1,0 +1,31 @@
+.date {
+    background-color: var(--color-primary);
+    padding: 10px 2rem;
+    color: #ffffff;
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.weekDays {
+    background-color: rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 10px 0;
+}
+
+.monthButton {
+    background: none;
+    font-size: 3rem;
+    padding: 0 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    height: unset;
+    min-height: unset;
+    color: #ffffff;
+    border: 1px solid #fff;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+}

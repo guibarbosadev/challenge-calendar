@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ChallengeState } from '@stores/challenge/challengeType';
 import { createChallenge, getChallenges, markAsDone, markAsSkipped, unmarkDay } from '@stores/challenge/challengeActions';
+import { CustomDate, CalendarMonth } from '@models/challenge';
 
 export const currentDate = new Date();
 export const currentDay = currentDate.getDate();
@@ -12,7 +13,7 @@ const initialState: ChallengeState = {
     didLoadChallenges: false,
     isLoading: false,
     selectedChallenge: null,
-    selectedDate: {
+    selectedMonth: {
         month: currentMonth,
         year: currentYear
     }
@@ -24,6 +25,9 @@ const challengeSlice = createSlice({
     reducers: {
         selectChallenge: (state, action) => {
             state.selectedChallenge = action.payload;
+        },
+        selectMonth: (state, action: PayloadAction<CalendarMonth>) => {
+            state.selectedMonth = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -72,4 +76,4 @@ const challengeSlice = createSlice({
     }
 });
 export const { reducer: challengeReducer } = challengeSlice;
-export const { selectChallenge } = challengeSlice.actions;
+export const { selectChallenge, selectMonth } = challengeSlice.actions;

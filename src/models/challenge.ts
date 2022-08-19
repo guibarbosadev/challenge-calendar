@@ -12,6 +12,11 @@ export interface CustomDate {
     day: number;
 }
 
+export interface CalendarMonth {
+    month: number;
+    year: number;
+}
+
 export interface Challenge {
     name: string;
     id: string;

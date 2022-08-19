@@ -5,26 +5,4 @@ $rT: rgba(255, 0, 0, 0);
     border-radius: 50px;
     overflow: hidden;
     border: 1px solid black;
-
-    &__date {
-        background-color: var(--color-primary);
-        padding: 10px 0;
-        color: #ffffff;
-        font-size: 2.5rem;
-    }
-
-    &__week {
-        background-color: rgba(0, 0, 0, 0.2);
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        padding: 10px 0;
-    }
-
-    &__body {
-        &__week {
-            border-bottom: 1px solid black;
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-        }
-    }
 }
