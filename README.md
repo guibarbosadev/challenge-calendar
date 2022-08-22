@@ -21,6 +21,7 @@
   * [x] Turn relative into absolute imports 
   * [x] Allow to mark current day as 'done' when it is marked as 'rest day'
   * [x] Allow to select month
+  * [x] Toggle current date
   * [ ] Make site responsive
   * [ ] Automatically show calendar when a challenge is created
   * [ ] Store data on backend instead of local storage

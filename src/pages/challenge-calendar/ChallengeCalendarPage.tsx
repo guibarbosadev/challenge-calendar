@@ -29,14 +29,17 @@ const ChallengeCalendarPage: React.FC = () => {
             const status = selectedChallenge.calendar?.[selectedMonth.year]?.[selectedMonth.month]?.[day];
             const isOverridable = overridableStatus.includes(status as EChallengeStatus);
             const canMarkAsDone = !status || isOverridable;
+            const canUnmark = status === EChallengeStatus.Done;
+            const date: CustomDate = { day: currentDay, month: currentMonth, year: currentYear };
 
             if (canMarkAsDone) {
-                const date: CustomDate = {
-                    day: currentDay,
-                    month: currentMonth,
-                    year: currentYear
-                };
                 dispatch(markAsDone({ challenge: selectedChallenge, date }));
+
+                return;
+            }
+
+            if (canUnmark) {
+                dispatch(unmarkDay({ challenge: selectedChallenge, date }));
             }
         }
     };
@@ -92,7 +95,6 @@ const ChallengeCalendarPage: React.FC = () => {
                             onClickFutureDate={toggleFutureDate}
                             onClickNextMonth={onClickNextMonth}
                             onClickPreviousMonth={onClickPreviousMonth}
-                            day={isCurrentMonth ? currentDay : undefined}
                             month={selectedMonth.month}
                             year={selectedMonth.year}
                         />
