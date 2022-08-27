@@ -22,7 +22,7 @@
   * [x] Allow to mark current day as 'done' when it is marked as 'rest day'
   * [x] Allow to select month
   * [x] Toggle current date
-  * [ ] Allow multiple challenges
+  * [x] Allow multiple challenges
   * [ ] Show some highlight on current day
   * [ ] Make site responsive
   * [ ] Automatically show calendar when a challenge is created

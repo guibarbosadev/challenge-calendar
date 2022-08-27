@@ -8,6 +8,8 @@ import { currentYear, selectChallenge, currentMonth, currentDay, selectMonth } f
 import Calendar from '@components/calendar/Calendar';
 import { markAsDone, markAsSkipped, unmarkDay } from '@stores/challenge/challengeActions';
 import getDate from 'date-fns/getDate';
+import { ERoutes } from '@models/routes';
+import { Link } from 'react-router-dom';
 
 const LAST_MONTH_OF_YEAR = 12;
 const FIRST_MONTH_OF_YEAR = 1;
@@ -15,8 +17,6 @@ const FIRST_MONTH_OF_YEAR = 1;
 const ChallengeCalendarPage: React.FC = () => {
     const { challenges, selectedChallenge, selectedMonth } = useAppSelector((state) => state.challenge);
     const dispatch = useAppDispatch();
-
-    const isCurrentMonth = selectedMonth.year === currentYear && selectedMonth.month === currentMonth;
 
     const onSelectChallenge = (option: Challenge) => {
         dispatch(selectChallenge(option));
@@ -74,7 +74,9 @@ const ChallengeCalendarPage: React.FC = () => {
         <>
             <header className={classNames.header}>
                 <Logo />
-                <button className={classNames.header__button}>Create new challenge</button>
+                <Link to={ERoutes.CreateChallenge}>
+                    <button className={classNames.header__button}>Create new challenge</button>
+                </Link>
             </header>
             <main className={classNames.body}>
                 <Select

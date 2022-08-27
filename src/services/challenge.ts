@@ -18,10 +18,10 @@ class ChallengeService {
     }
 
     async saveChallenge(challenge: Challenge) {
-        const fetchedChallenges = await this.fetchChallenges();
+        const fetchedChallenges = (await this.fetchChallenges()) ?? [];
         const challengeIndex = fetchedChallenges.findIndex(({ id }) => id === challenge.id);
         const shouldCreate = challengeIndex === -1;
-        let challenges: Challenge[] = [];
+        let challenges: Challenge[] = [...fetchedChallenges];
 
         if (shouldCreate) {
             challenges = [...fetchedChallenges, challenge];
