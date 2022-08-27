@@ -1,5 +1,5 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
-import { challengeReducer } from './challenge/challengeSlice';
+import { challengeReducer } from './challenge/challenge.slice';
 
 export const rootStore = configureStore({
     reducer: {

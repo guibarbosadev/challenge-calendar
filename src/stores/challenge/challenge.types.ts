@@ -1,4 +1,4 @@
-import { CalendarMonth, Challenge } from '@models/challenge';
+import { CalendarMonth, Challenge, CustomDate } from '@models/challenge';
 
 export interface ChallengeState {
     didLoadChallenges: boolean;
@@ -6,4 +6,9 @@ export interface ChallengeState {
     isLoading: boolean;
     selectedChallenge: Challenge | null;
     selectedMonth: CalendarMonth;
+}
+
+export interface MarkAsSomethingParams {
+    challenge: Challenge;
+    date: CustomDate;
 }

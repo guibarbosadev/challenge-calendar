@@ -3,9 +3,9 @@ import { Redirect } from 'react-router';
 import { ERoutes } from '@models/routes';
 import ChallengeCreationPage from '@pages/challenge-creation/ChallengeCreationPage';
 import Loading from '@components/loading/Loading';
+import fetchChallenges from '@stores/challenge/thunks/fetch-challenges.thunk';
 import styles from './styles.module.scss';
 import { useAppDispatch, useAppSelector } from '@stores/hooks';
-import { getChallenges as createGetChallengesAction } from '@stores/challenge/challengeActions';
 
 const HomePage = () => {
     const dispatch = useAppDispatch();
@@ -15,7 +15,7 @@ const HomePage = () => {
         const shouldLoadChallenges = !didLoadChallenges;
 
         if (shouldLoadChallenges) {
-            dispatch(createGetChallengesAction());
+            dispatch(fetchChallenges());
         }
     };
 

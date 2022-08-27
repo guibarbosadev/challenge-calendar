@@ -1,15 +1,17 @@
-import React from 'react';
-import Logo from '@components/logo/Logo';
-import { useAppSelector, useAppDispatch } from '@stores/hooks';
-import classNames from './styles.module.scss';
-import Select from 'react-select';
-import { Challenge, EChallengeStatus, TChallengeStatus, CustomDate } from '@models/challenge';
-import { currentYear, selectChallenge, currentMonth, currentDay, selectMonth } from '@stores/challenge/challengeSlice';
 import Calendar from '@components/calendar/Calendar';
-import { markAsDone, markAsSkipped, unmarkDay } from '@stores/challenge/challengeActions';
-import getDate from 'date-fns/getDate';
+import Logo from '@components/logo/Logo';
+import { Challenge, CustomDate, EChallengeStatus } from '@models/challenge';
 import { ERoutes } from '@models/routes';
+import { currentDay, currentMonth, currentYear, selectChallenge, selectMonth } from '@stores/challenge/challenge.slice';
+import markAsDone from '@stores/challenge/thunks/mark-as-done.thunk';
+import markAsSkipped from '@stores/challenge/thunks/mark-as-skipped.thunk';
+import unmarkDay from '@stores/challenge/thunks/unmark-day.thunk';
+import { useAppDispatch, useAppSelector } from '@stores/hooks';
+import getDate from 'date-fns/getDate';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import Select from 'react-select';
+import classNames from './styles.module.scss';
 
 const LAST_MONTH_OF_YEAR = 12;
 const FIRST_MONTH_OF_YEAR = 1;

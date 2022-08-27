@@ -65,9 +65,9 @@ const CalendarBody: React.FC<CalendarBodyProps> = ({ calendar, calendarMonth, on
         <div>
             {weeks.map((week, index) => (
                 <div key={index} className={classNames.week}>
-                    {week.map((monthDay) => (
+                    {week.map((monthDay, index) => (
                         <CalendarCell
-                            key={monthDay}
+                            key={index}
                             status={getDayStatus(calendar, { year, month, day: monthDay })}
                             onClick={getOnClickFunc(monthDay)}
                             day={monthDay}

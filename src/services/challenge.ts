@@ -15,6 +15,7 @@ class ChallengeService {
         const updatedChallenges = await this.saveChallenge(challenge);
 
         return updatedChallenges;
+        2;
     }
 
     async saveChallenge(challenge: Challenge) {
