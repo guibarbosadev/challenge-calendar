@@ -23,8 +23,8 @@
   * [x] Allow to select month
   * [x] Toggle current date
   * [x] Allow multiple challenges
+  * [x] Make site responsive
   * [ ] Show some highlight on current day
-  * [ ] Make site responsive
   * [ ] Automatically show calendar when a challenge is created
   * [ ] Store data on backend instead of local storage
   * [ ] Setup application on [guibarbosa.dev](guibarbosa.dev) domain

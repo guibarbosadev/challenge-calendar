@@ -2,9 +2,9 @@
     position: relative;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
-    padding: 0.625rem 0;
+    padding: 0.625rem 0 0.625rem 3rem;
 
     &__button {
         position: absolute;
@@ -48,4 +48,5 @@
 .calendar {
     max-width: 1052px;
     width: 100%;
+    padding: 0 1rem 2rem;
 }
