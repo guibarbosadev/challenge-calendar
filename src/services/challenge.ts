@@ -13,9 +13,9 @@ class ChallengeService {
         const id = currentDate.toISOString();
         const challenge: Challenge = { name, id, calendar: {} };
         const updatedChallenges = await this.saveChallenge(challenge);
+        const savedChallenge = updatedChallenges.find((updatedChallenge) => updatedChallenge.id === id);
 
-        return updatedChallenges;
-        2;
+        return savedChallenge;
     }
 
     async saveChallenge(challenge: Challenge) {

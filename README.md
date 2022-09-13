@@ -24,8 +24,8 @@
   * [x] Toggle current date
   * [x] Allow multiple challenges
   * [x] Make site responsive
+  * [x] Automatically show calendar when a challenge is created
   * [ ] Show some highlight on current day
-  * [ ] Automatically show calendar when a challenge is created
   * [ ] Store data on backend instead of local storage
   * [ ] Setup application on [guibarbosa.dev](guibarbosa.dev) domain
   * [ ] Launch some feedback when a day is marked as 'done'
