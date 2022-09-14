@@ -24,13 +24,13 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({ year, month, onClickPre
                 </button>
             </div>
             <div className={classNames.weekDays}>
+                <div>Sun</div>
                 <div>Mon</div>
                 <div>Tue</div>
                 <div>Wed</div>
                 <div>Thu</div>
                 <div>Fri</div>
                 <div>Sat</div>
-                <div>Sun</div>
             </div>
         </>
     );
