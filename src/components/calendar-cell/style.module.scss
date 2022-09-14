@@ -7,8 +7,13 @@
     align-items: center;
     justify-content: center;
 
+    &.pastDate:not(.skipped):not(.done) {
+        background-color: #ffcb75;
+    }
+
     &.clickable {
         cursor: pointer;
+        background-color: #ffb4a28f;
     }
 
     &:last-child {

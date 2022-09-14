@@ -4,7 +4,7 @@ import getDay from 'date-fns/getDay';
 import getDaysInMonth from 'date-fns/getDaysInMonth';
 import { chunkArray } from '@utils/array';
 import classNames from './style.module.scss';
-import { getDayStatus } from '@utils/challenge';
+import { checkIsCurrentDay, checkIsFutureDate, checkIsPastDate, getDayStatus } from '@utils/calendar';
 import CalendarCell from '@components/calendar-cell/CalendarCell';
 import isSameMonth from 'date-fns/isSameMonth';
 import compareDesc from 'date-fns/compareDesc';
@@ -24,7 +24,6 @@ const CalendarBody: React.FC<CalendarBodyProps> = ({ calendar, calendarMonth, on
     const { year, month } = calendarMonth;
     const date = new Date(`${year}-${month}-02`);
 
-    const currentDate = new Date();
     const daysInTheMonthCount = getDaysInMonth(date);
     const daysInTheMonth = Array.from({ length: daysInTheMonthCount }).map((_, index) => index + 1);
     const dayInTheWeek = getDay(date);
@@ -32,27 +31,22 @@ const CalendarBody: React.FC<CalendarBodyProps> = ({ calendar, calendarMonth, on
     const cells: (number | undefined)[] = Array.from({ length: CELLS_COUNT });
     cells.splice(firstDayIndex, daysInTheMonthCount, ...daysInTheMonth);
     const weeks = chunkArray([...cells], 7);
-    const currentDayOfMonth = new Date().getDate();
-    const checkIsSameDay = (monthDay: number) => isSameMonth(date, new Date()) && currentDayOfMonth === monthDay;
-    const checkIsFutureDate = (monthDay: number) => {
-        const cellDate = new Date(`${year}-${month}-${monthDay}`);
-        const isFutureMonth = Boolean(compareDesc(cellDate, currentDate) === -1 ? true : false);
-        const isOnCurrentMonth = isSameMonth(cellDate, currentDate);
-        const isMonthDayBigger = monthDay > currentDayOfMonth;
-        const isFutureDate = isFutureMonth || (isOnCurrentMonth && isMonthDayBigger);
+    const checkIsCellClickable = (monthDay: number) => {
+        const customDate: CustomDate = { day: monthDay, month, year };
+        const isClickable = checkIsCurrentDay(customDate) || checkIsFutureDate(customDate);
 
-        return isFutureDate;
+        return isClickable;
     };
-    const checkIsCellClickable = (monthDay: number) => checkIsSameDay(monthDay) || checkIsFutureDate(monthDay);
 
     const getOnClickFunc = (monthDay: number) => {
         let onClickFunc;
+        const customDate: CustomDate = { day: monthDay, month, year };
 
-        if (checkIsSameDay(monthDay)) {
+        if (checkIsCurrentDay(customDate)) {
             onClickFunc = () => onClickCurrentDate();
         }
 
-        if (checkIsFutureDate(monthDay)) {
+        if (checkIsFutureDate(customDate)) {
             const date: CustomDate = { year, month, day: monthDay };
 
             onClickFunc = () => onClickFutureDate?.(date);
@@ -65,15 +59,20 @@ const CalendarBody: React.FC<CalendarBodyProps> = ({ calendar, calendarMonth, on
         <div>
             {weeks.map((week, index) => (
                 <div key={index} className={classNames.week}>
-                    {week.map((monthDay, index) => (
-                        <CalendarCell
-                            key={index}
-                            status={getDayStatus(calendar, { year, month, day: monthDay })}
-                            onClick={getOnClickFunc(monthDay)}
-                            day={monthDay}
-                            isClickable={checkIsCellClickable(monthDay)}
-                        />
-                    ))}
+                    {week.map((monthDay, index) => {
+                        const customDate: CustomDate = { year, month, day: monthDay };
+
+                        return (
+                            <CalendarCell
+                                key={index}
+                                status={getDayStatus(calendar, customDate)}
+                                onClick={getOnClickFunc(monthDay)}
+                                day={monthDay}
+                                isClickable={checkIsCellClickable(monthDay)}
+                                isPastDate={monthDay && checkIsPastDate(customDate)}
+                            />
+                        );
+                    })}
                 </div>
             ))}
         </div>
