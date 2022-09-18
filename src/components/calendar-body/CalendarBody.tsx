@@ -70,6 +70,7 @@ const CalendarBody: React.FC<CalendarBodyProps> = ({ calendar, calendarMonth, on
                                 day={monthDay}
                                 isClickable={checkIsCellClickable(monthDay)}
                                 isPastDate={monthDay && checkIsPastDate(customDate)}
+                                isCurrentDay={checkIsCurrentDay(customDate)}
                             />
                         );
                     })}

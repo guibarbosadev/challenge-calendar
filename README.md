@@ -26,7 +26,7 @@
   * [x] Make site responsive
   * [x] Automatically show calendar when a challenge is created
   * [x] Change style of failed days
-  * [ ] Show some highlight on current day
+  * [x] Show some highlight on current day
   * [ ] Store data on backend instead of local storage
   * [ ] Setup application on [guibarbosa.dev](guibarbosa.dev) domain
   * [ ] Launch some feedback when a day is marked as 'done'

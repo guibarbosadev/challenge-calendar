@@ -1,17 +1,17 @@
 import React, { useLayoutEffect } from 'react';
 import { EChallengeStatus, TChallengeStatus } from '@models/challenge';
 import classNames from './style.module.scss';
-import { checkIsPastDate } from '../../utils/calendar';
 
 interface CalendarCellProps {
     day: number;
     status: TChallengeStatus;
     isClickable: boolean;
     isPastDate: boolean;
+    isCurrentDay: boolean;
     onClick?: () => void;
 }
 
-const CalendarCell: React.FC<CalendarCellProps> = ({ day, status, isPastDate, isClickable = false, onClick }) => {
+const CalendarCell: React.FC<CalendarCellProps> = ({ day, status, isPastDate, isClickable = false, isCurrentDay, onClick }) => {
     const [didUpdateStatus, setDidUpdateStatus] = React.useState<boolean | undefined>(undefined);
 
     useLayoutEffect(() => {
@@ -24,6 +24,10 @@ const CalendarCell: React.FC<CalendarCellProps> = ({ day, status, isPastDate, is
 
     const getCellClassNames = () => {
         let cellClassNames = [classNames.day];
+
+        if (isCurrentDay) {
+            cellClassNames = [...cellClassNames, classNames.currentDay];
+        }
 
         if (isPastDate) {
             cellClassNames = [...cellClassNames, classNames.pastDate];

@@ -13,6 +13,9 @@
 
     &.clickable {
         cursor: pointer;
+    }
+
+    &.clickable:not(.currentDay) {
         background-color: #ffb4a28f;
     }
 
@@ -118,5 +121,9 @@
             content: '';
             border-radius: 50%;
         }
+    }
+
+    &.currentDay {
+        background-color: #a2d2ffc4;
     }
 }
