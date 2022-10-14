@@ -26,7 +26,7 @@ const ChallengeCalendarPage: React.FC = () => {
 
     const toggleCurrentDate = () => {
         if (selectedChallenge) {
-            const overridableStatus: EChallengeStatus[] = [EChallengeStatus.Skipped, EChallengeStatus.Failed];
+            const overridableStatus: EChallengeStatus[] = [EChallengeStatus.Skipped];
             const day = getDate(new Date());
             const status = selectedChallenge.calendar?.[selectedMonth.year]?.[selectedMonth.month]?.[day];
             const isOverridable = overridableStatus.includes(status as EChallengeStatus);

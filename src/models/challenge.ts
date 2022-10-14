@@ -26,7 +26,6 @@ export interface Challenge {
 export enum EChallengeStatus {
     Done = 'done',
     Skipped = 'skipped',
-    Failed = 'failed'
 }
 
 export type TChallengeStatus = EChallengeStatus | undefined;

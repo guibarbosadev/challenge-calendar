@@ -8,8 +8,6 @@ export function getDayStatus(calendar: ChallengeCalendar, date: CustomDate): TCh
     switch (calendar?.[year]?.[month]?.[day]) {
         case EChallengeStatus.Done:
             return EChallengeStatus.Done;
-        case EChallengeStatus.Failed:
-            return EChallengeStatus.Failed;
         case EChallengeStatus.Skipped:
             return EChallengeStatus.Skipped;
         default:
