@@ -1,4 +1,4 @@
 export enum ERoutes {
-    CreateChallenge = '/create-challenge',
-    Calendar = '/calendar'
+    CreateChallenge = '/streak-calendar/create-challenge',
+    Calendar = '/streak-calendar/calendar'
 }
