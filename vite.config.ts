@@ -7,5 +7,8 @@ export default defineConfig({
     plugins: [reactRefresh(), configTsPaths()],
     esbuild: {
         loader: 'tsx'
+    },
+    build: {
+        assetsDir: 'streak-calendar-assets'
     }
 });
