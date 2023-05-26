@@ -1,6 +1,11 @@
 :root {
     --color-primary: #ff002a;
     --color-primary-disabled: #f26e76;
+    --color-done-day: #82C8A0;
+    --color-current-day: #a2d2ffc4;
+    --color-failed-day: #FF7676;
+    --color-skipped-day: #FFC107;
+    --color-future-day: #B3B3B3;
 }
 
 * {

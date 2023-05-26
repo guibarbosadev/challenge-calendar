@@ -8,7 +8,7 @@
     justify-content: center;
 
     &.pastDate:not(.skipped):not(.done) {
-        background-color: #ffcb75;
+        background-color: var(--color-failed-day);
     }
 
     &.clickable {
@@ -16,7 +16,7 @@
     }
 
     &.clickable:not(.currentDay) {
-        background-color: #ffb4a28f;
+        background-color: var(--color-future-day);
     }
 
     &:last-child {
@@ -30,6 +30,7 @@
 
     &.done {
         position: relative;
+        background-color: var(--color-done-day);
 
         &:not(.didUpdate) {
             &::before {
@@ -123,7 +124,7 @@
         }
     }
 
-    &.currentDay {
-        background-color: #a2d2ffc4;
+    &.currentDay:not(.done) {
+        background-color: var(--color-current-day);
     }
 }
