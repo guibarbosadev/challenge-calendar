@@ -1,11 +1,12 @@
 import { Challenge, TChallengeStatus, CustomDate, ChallengeCalendar } from '@models/challenge';
+import { apiClient } from '@services/base';
 
 class ChallengeService {
     async fetchChallenges() {
-        const challenges = await localStorage.getItem('challenges');
-        const parsedChallenges: Challenge[] = challenges ? JSON.parse(challenges) : [];
+        const URL = '/challenges';
+        const { data: challenges } = await apiClient.get<Challenge[]>(URL);
 
-        return parsedChallenges;
+        return challenges;
     }
 
     async createChallenge(name: string) {

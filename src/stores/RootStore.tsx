@@ -1,9 +1,11 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import { challengeReducer } from './challenge/challenge.slice';
+import { authReducer } from './auth/auth.slice';
 
 export const rootStore = configureStore({
     reducer: {
-        challenge: challengeReducer
+        challenge: challengeReducer,
+        auth: authReducer
     }
 });
 
