@@ -12,6 +12,7 @@ class AuthService {
         const { provider, idToken } = credentials;
         const URL = '/login';
         const body = { provider, idToken };
+
         const { data: user } = await apiClient.post<IUser>(URL, body);
 
         return user;
@@ -22,6 +23,16 @@ class AuthService {
         await apiClient.post<void>(URL);
 
         return;
+    }
+
+    async fetchLoggedInUser() {
+        const URL = '/profile';
+        const response = await apiClient.get<{ user: IUser }>(URL);
+        const { user } = response.data;
+
+        if (!user._id) throw new Error('');
+
+        return user;
     }
 }
 
