@@ -10,13 +10,9 @@ class ChallengeService {
     }
 
     async createChallenge(name: string) {
-        const currentDate = new Date();
-        const id = currentDate.toISOString();
-        const challenge: Challenge = { name, id, calendar: {} };
-        const updatedChallenges = await this.saveChallenge(challenge);
-        const savedChallenge = updatedChallenges.find((updatedChallenge) => updatedChallenge.id === id);
+        const challenge = await apiClient.post('/challenge', { name });
 
-        return savedChallenge;
+        return challenge;
     }
 
     async saveChallenge(challenge: Challenge) {
