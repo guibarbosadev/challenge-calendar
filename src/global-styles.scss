@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 :root {
     --color-primary: #ff002a;
     --color-primary-disabled: #f26e76;
@@ -7,6 +9,7 @@
     --color-skipped-day: #FFC107;
     --color-future-day: #B3B3B3;
 }
+
 
 * {
     font-family: 'Montserrat';
@@ -18,7 +21,10 @@ body,
 #root {
     margin: 0;
     height: 100%;
-    min-width: 800px;
+
+    @media screen and (max-width: $tablet-breakpoint) {
+      font-size: 10px;
+    }
 }
 
 button {

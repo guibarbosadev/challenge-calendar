@@ -78,6 +78,7 @@ const ChallengeCalendarPage: React.FC = () => {
                 <Logo />
                 <Link to={ERoutes.CreateChallenge}>
                     <button className={classNames.header__button}>Create new challenge</button>
+                    <button className={`${classNames.header__button} ${classNames['header__button--mobile']}`}>+</button>
                 </Link>
             </header>
             <main className={classNames.body}>

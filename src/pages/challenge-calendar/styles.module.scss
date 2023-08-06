@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .header {
     position: relative;
     width: 100%;
@@ -20,6 +22,18 @@
         &:hover {
             background-color: rgba(0, 0, 0, 0.02);
             color: rgba(0, 0, 0, 0.8);
+        }
+
+        &--mobile {
+          display: none;
+        }
+
+        @media screen and (max-width: $mobile-breakpoint) {
+          display: none;
+
+          &--mobile {
+            display: block;
+          }
         }
     }
 }
@@ -46,7 +60,7 @@
 }
 
 .calendar {
-    max-width: 768px;
+    max-width: $tablet-breakpoint;
     width: 100%;
     padding: 0 1rem 2rem;
 }

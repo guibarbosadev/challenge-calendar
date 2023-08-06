@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .day {
     font-size: 2rem;
     border-right: 1px solid black;
@@ -6,6 +8,10 @@
     align-items: center;
     justify-content: center;
     padding: 1.5rem 0;
+
+    @media screen and (max-width: $tablet-breakpoint) {
+        padding: 1rem 0;
+    }
 
     &.pastDate:not(.skipped):not(.done) {
         background-color: var(--color-failed-day);
