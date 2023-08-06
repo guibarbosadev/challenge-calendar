@@ -10,7 +10,8 @@ class ChallengeService {
     }
 
     async createChallenge(name: string) {
-        const challenge = await apiClient.post('/challenge', { name });
+        const response = await apiClient.post('/challenge', { name });
+        const { data: challenge } = response;
 
         return challenge;
     }
