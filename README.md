@@ -30,9 +30,9 @@
   * [x] Setup application on [guibarbosa.dev](guibarbosa.dev) domain
   * [x] Add authentication
   * [x] Store data on backend instead of local storage
+  * [x] Reduce to < 1s api requests(today, we are having 50s+, because backend API is spinning down)
   * [ ] Launch some feedback when a day is marked as 'done'
   * [ ] Add 'loading' visual feedback while marking day
   * [ ] Add 'error' visual feedback
   * [ ] Allow to delete/edit a challenge
   * [ ] Allow to set endDate + reward for a challenge
-  * [ ] Reduce to < 1s api requests(today, we are having 50s+, because backend API is spinning down)
